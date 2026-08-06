@@ -2,8 +2,7 @@
 ### Mubadala Portfolio Strategy report
 
 I built the data model and wrote the DAX; I shipped a
-browser dashboard since I work on a Mac, and here is my exact build guide so it can be
-done in Power BI.
+browser dashboard since I work on a Mac.
 
 - *I modelled it as a star schema so one sector slicer filters holdings, deals and market
   data through a single dimension, rather than duplicating text across a flat table.*
