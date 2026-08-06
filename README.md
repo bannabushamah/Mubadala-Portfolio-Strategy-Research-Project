@@ -1,6 +1,6 @@
 # Equity Research — Mubadala Portfolio Strategy Analyst
 
-**Author:** bann · **Date:** August 2026 · **Status:** complete, 72/72 verification checks passing
+**Author:** bann · **Status:** ongoing
 
 An independent equity-research project analysing the portfolio strategy, sector allocation and
 global investments of **Mubadala Investment Company**, Abu Dhabi's sovereign investor
@@ -108,7 +108,7 @@ evidence grades — Official, Market data, Press reporting, Analyst estimate —
 in the dataset, the dashboard and the report.
 
 *Not affiliated with or endorsed by Mubadala Investment Company.
-The author holds no position in any security mentioned.*
+No position held in any security mentioned.*
 
 **Sources:** Mubadala 2025 Annual Review and press releases (mubadala.com, annual2025.mubadala.com);
-StockAnalysis.com / S&P Global Market Intelligence. Data frozen 4 August 2026.
+StockAnalysis.com / S&P Global Market Intelligence. Latest data from 4 August 2026.
