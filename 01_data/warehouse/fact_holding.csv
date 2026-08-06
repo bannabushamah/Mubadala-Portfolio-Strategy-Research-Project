@@ -1,0 +1,21 @@
+holding_id,holding_name,sector_id,geo_id,platform_id,ownership,listing_status,ticker,investment_thesis,evidence_grade,source_id
+1,GlobalFoundries Inc.,1,2,2,Controlling shareholder (~80%) via Mubadala Technology Investment Company,Listed,NASDAQ:GFS,Specialty semiconductor foundry. Essential-chip supply-chain sovereignty play with rising silicon-photonics and automotive content.,Press reporting,S07
+2,OMV Aktiengesellschaft,3,4,2,24.9% strategic stake via Mubadala Petroleum & Petrochemicals Holding,Listed,VIE:OMV,Integrated energy and chemicals. Cash-generative hydrocarbon base funding a chemicals/circular-economy transition.,Press reporting,S08
+3,Mubadala Capital,4,12,3,Wholly owned alternative asset management subsidiary,Private,-,"c.US$30bn across balance-sheet and third-party vehicles in PE, Brazil, Venture Capital and Solutions. Fee-earning annuity on top of principal returns.",Official,S04
+4,Masdar (Abu Dhabi Future Energy Co.),3,1,1,Shareholder alongside TAQA and ADNOC,Private,-,Global clean-energy champion; anchor of the UAE energy-transition cluster.,Press reporting,S06
+5,WHOOP Inc.,2,2,2,Series G investor (minority),Private,-,"AI-driven continuous-biometrics health platform. 2.5m+ members, US$1.1bn exit-2025 bookings run-rate, cash-flow positive in 2025.",Official,S05
+6,Fortress Investment Group,4,2,3,Majority shareholder; strategic partnership,Private,-,Credit and special-situations manager. 2025 partnership seeking to deploy c.US$1bn.,Official,S03
+7,Corient,4,2,3,Held via Mubadala Capital,Private,-,US wealth-management consolidator; multiple tack-on acquisitions completed in 2025.,Official,S03
+8,Nord Anglia Education,7,3,2,Minority stake acquired 2025 (US$600m),Private,-,Premium international schools platform; structural demand growth in emerging-market middle class.,Official,S03
+9,Tabreed (National Central Cooling Co.),5,1,1,Strategic shareholder,Listed,DFM:TABREED,"District cooling utility; regulated-style cash flows, closed two largest-ever transactions in 2025 (AED3.87bn).",Official,S03
+10,CoolIT Systems,1,7,2,Minority stake - agreed sale to Ecolab in KKR-led US$4.75bn transaction (2026),Private,-,Liquid cooling for AI data centres. Realisation demonstrating monetisation of the AI-infrastructure theme.,Official,S06
+11,CredibleX,4,1,1,"Lead investor, Series A (2026)",Private,-,UAE embedded-finance platform accelerating SME lending. Direct fintech exposure.,Official,S06
+12,Power Factors,1,7,2,Minority stake (2026),Private,-,Renewable-asset performance software; data layer for the energy transition.,Official,S06
+13,TBX Nexxia (JV with Tubacex),6,1,1,Joint venture launched in Abu Dhabi (2026),Private,-,End-to-end corrosion-resistant-alloy OCTG platform serving critical energy supply chains.,Official,S06
+14,"Aldar / Mubadala JV - The Link, Masdar City",5,1,4,50/50 joint venture,Private,-,Prime Abu Dhabi commercial real estate anchored to the sustainability cluster.,Official,S06
+15,Hornsea 3 Offshore Wind Farm,3,3,4,Consortium investor alongside Apollo funds (2026),Private,-,UK offshore wind; long-duration contracted renewable cash flows.,Official,S06
+16,Greenlink Interconnector,5,8,4,Investment alongside Equitix (2026),Private,-,Ireland-UK electricity interconnector; regulated infrastructure.,Official,S06
+17,Embraer partnership,8,6,1,Strategic agreement (2026),Listed,NYSE:ERJ,Aerospace industrial content and localisation for the UAE.,Official,S06
+18,Container leasing platforms (with Stonepeak),10,2,4,Partnership investment (2026),Private,-,Global-trade linked leasing assets with contracted yields.,Official,S06
+19,MGX,1,1,1,AI-focused investment vehicle established with G42,Private,-,Dedicated artificial-intelligence and advanced-technology capital vehicle; core to Abu Dhabi's AI ambition.,Press reporting,S06
+20,Barings Global Real Estate Debt Partnership,5,12,3,US$500m partnership (2025),Private,-,Senior real-estate credit; floating-rate income with downside protection.,Official,S03

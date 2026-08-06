@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mubadala Portfolio Strategy Dashboard</title>
+<style>
+:root{--navy:#0B2545;--navy2:#13315C;--gold:#C9A227;--teal:#1B7F79;--slate:#5A6B7B;
+--rust:#A6432F;--bg:#F4F6F9;--card:#FFFFFF;--line:#E2E7ED;--ink:#122B45;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+background:var(--bg);color:var(--ink);-webkit-font-smoothing:antialiased}
+header{background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;padding:26px 30px 22px}
+header h1{font-size:22px;font-weight:700;letter-spacing:-.3px}
+header p{opacity:.78;font-size:13px;margin-top:5px}
+.badge{display:inline-block;background:rgba(201,162,39,.2);color:var(--gold);border:1px solid rgba(201,162,39,.4);
+padding:3px 9px;border-radius:20px;font-size:11px;font-weight:600;margin-top:10px;margin-right:6px}
+nav{background:var(--card);border-bottom:1px solid var(--line);padding:0 30px;display:flex;gap:2px;
+overflow-x:auto;position:sticky;top:0;z-index:20}
+nav button{background:none;border:none;padding:14px 16px;font-size:13px;font-weight:600;color:var(--slate);
+cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;font-family:inherit}
+nav button:hover{color:var(--navy)}
+nav button.active{color:var(--navy);border-bottom-color:var(--gold)}
+main{padding:24px 30px 60px;max-width:1500px;margin:0 auto}
+.tab{display:none}.tab.active{display:block}
+.grid{display:grid;gap:16px}
+.k4{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+.c2{grid-template-columns:repeat(auto-fit,minmax(420px,1fr))}
+.c3{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;
+box-shadow:0 1px 2px rgba(11,37,69,.04)}
+.card h3{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.card .sub{font-size:11.5px;color:var(--slate);margin-bottom:14px}
+.kpi .label{font-size:11px;text-transform:uppercase;letter-spacing:.7px;color:var(--slate);font-weight:600}
+.kpi .value{font-size:28px;font-weight:700;color:var(--navy);margin:6px 0 2px;letter-spacing:-.5px}
+.kpi .note{font-size:11.5px;color:var(--teal);font-weight:600}
+.filters{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;
+background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 16px}
+.filters label{font-size:11px;font-weight:700;color:var(--slate);text-transform:uppercase;letter-spacing:.5px}
+select{font:13px inherit;padding:6px 10px;border:1px solid var(--line);border-radius:6px;
+background:#fff;color:var(--ink);font-family:inherit}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th{text-align:left;background:var(--navy);color:#fff;padding:9px 10px;font-weight:600;font-size:11px;
+text-transform:uppercase;letter-spacing:.4px;cursor:pointer;user-select:none;white-space:nowrap}
+th:hover{background:var(--navy2)}
+td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+tbody tr:hover{background:#F8FAFC}
+.num{text-align:right;font-variant-numeric:tabular-nums}
+.pill{display:inline-block;padding:2px 8px;border-radius:12px;font-size:10.5px;font-weight:700}
+.pill.hi{background:#FDF3D8;color:#8A6F10}.pill.md{background:#DFF0EE;color:#0F5A56}
+.pill.lo{background:#EDF0F3;color:#5A6B7B}
+.pill.off{background:#DFF0EE;color:#0F5A56}.pill.press{background:#FDF3D8;color:#8A6F10}
+.scroll{max-height:520px;overflow:auto;border-radius:8px;border:1px solid var(--line)}
+.scroll thead th{position:sticky;top:0;z-index:2}
+.note{background:#FFF9E8;border-left:3px solid var(--gold);padding:11px 14px;border-radius:0 6px 6px 0;
+font-size:12.5px;color:#5B4A10;margin-top:14px}
+.finding{background:#EEF6F5;border-left:3px solid var(--teal);padding:11px 14px;border-radius:0 6px 6px 0;
+font-size:12.5px;margin-top:14px}
+.warn{background:#FBEFEC;border-left:3px solid var(--rust);padding:11px 14px;border-radius:0 6px 6px 0;
+font-size:12.5px;margin-top:14px}
+svg{display:block;width:100%;height:auto;overflow:visible}
+.lgd{display:flex;gap:14px;flex-wrap:wrap;margin-top:10px;font-size:11.5px;color:var(--slate)}
+.lgd i{width:11px;height:11px;border-radius:3px;display:inline-block;margin-right:5px;vertical-align:-1px}
+footer{padding:20px 30px;font-size:11.5px;color:var(--slate);border-top:1px solid var(--line);background:var(--card)}
+.tag{font-size:10.5px;color:var(--slate);font-weight:600}
+</style></head><body>
+<header>
+ <h1>Mubadala Investment Company &mdash; Portfolio Strategy Dashboard</h1>
+ <p>Sector allocation, global investment trends and valuation case studies across technology, healthcare, energy and financial services</p>
+ <span class="badge">FY2025 results</span><span class="badge">Data frozen 4 Aug 2026</span><span class="badge">Every figure source-tagged</span>
+</header>
+<nav id="nav"></nav>
+<main>
+ <section class="tab active" id="t-overview"></section>
+ <section class="tab" id="t-portfolio"></section>
+ <section class="tab" id="t-deals"></section>
+ <section class="tab" id="t-valuation"></section>
+ <section class="tab" id="t-quant"></section>
+ <section class="tab" id="t-method"></section>
+</main>
+<footer>
+ Built by bann, August 2026. Sources: Mubadala 2025 Annual Review and press releases; StockAnalysis / S&amp;P Global Market Intelligence.
+ Forward-looking assumptions are the author's own and are not investment advice.
+</footer>
+<script>
+const DATA = {"holdings":[{"holding_name":"GlobalFoundries Inc.","sector_name":"Technology","ai_exposure":"High","country":"United States","region":"North America","platform_name":"Private Equity","ownership":"Controlling shareholder (~80%) via Mubadala Technology Investment Company","listing_status":"Listed","ticker":"NASDAQ:GFS","investment_thesis":"Specialty semiconductor foundry. Essential-chip supply-chain sovereignty play with rising silicon-photonics and automotive content.","evidence_grade":"Press reporting"},{"holding_name":"OMV Aktiengesellschaft","sector_name":"Energy & Sustainability","ai_exposure":"Medium","country":"Austria","region":"Europe","platform_name":"Private Equity","ownership":"24.9% strategic stake via Mubadala Petroleum & Petrochemicals Holding","listing_status":"Listed","ticker":"VIE:OMV","investment_thesis":"Integrated energy and chemicals. Cash-generative hydrocarbon base funding a chemicals/circular-economy transition.","evidence_grade":"Press reporting"},{"holding_name":"Mubadala Capital","sector_name":"Financial Services","ai_exposure":"High","country":"Multi-geography","region":"Global","platform_name":"Credit and Special Situations","ownership":"Wholly owned alternative asset management subsidiary","listing_status":"Private","ticker":"-","investment_thesis":"c.US$30bn across balance-sheet and third-party vehicles in PE, Brazil, Venture Capital and Solutions. Fee-earning annuity on top of principal returns.","evidence_grade":"Official"},{"holding_name":"Masdar (Abu Dhabi Future Energy Co.)","sector_name":"Energy & Sustainability","ai_exposure":"Medium","country":"United Arab Emirates","region":"Middle East","platform_name":"UAE Investments","ownership":"Shareholder alongside TAQA and ADNOC","listing_status":"Private","ticker":"-","investment_thesis":"Global clean-energy champion; anchor of the UAE energy-transition cluster.","evidence_grade":"Press reporting"},{"holding_name":"WHOOP Inc.","sector_name":"Healthcare & Life Sciences","ai_exposure":"High","country":"United States","region":"North America","platform_name":"Private Equity","ownership":"Series G investor (minority)","listing_status":"Private","ticker":"-","investment_thesis":"AI-driven continuous-biometrics health platform. 2.5m+ members, US$1.1bn exit-2025 bookings run-rate, cash-flow positive in 2025.","evidence_grade":"Official"},{"holding_name":"Fortress Investment Group","sector_name":"Financial Services","ai_exposure":"High","country":"United States","region":"North America","platform_name":"Credit and Special Situations","ownership":"Majority shareholder; strategic partnership","listing_status":"Private","ticker":"-","investment_thesis":"Credit and special-situations manager. 2025 partnership seeking to deploy c.US$1bn.","evidence_grade":"Official"},{"holding_name":"Corient","sector_name":"Financial Services","ai_exposure":"High","country":"United States","region":"North America","platform_name":"Credit and Special Situations","ownership":"Held via Mubadala Capital","listing_status":"Private","ticker":"-","investment_thesis":"US wealth-management consolidator; multiple tack-on acquisitions completed in 2025.","evidence_grade":"Official"},{"holding_name":"Nord Anglia Education","sector_name":"Consumer & Education","ai_exposure":"Low","country":"United Kingdom","region":"Europe","platform_name":"Private Equity","ownership":"Minority stake acquired 2025 (US$600m)","listing_status":"Private","ticker":"-","investment_thesis":"Premium international schools platform; structural demand growth in emerging-market middle class.","evidence_grade":"Official"},{"holding_name":"Tabreed (National Central Cooling Co.)","sector_name":"Real Estate & Infrastructure","ai_exposure":"Low","country":"United Arab Emirates","region":"Middle East","platform_name":"UAE Investments","ownership":"Strategic shareholder","listing_status":"Listed","ticker":"DFM:TABREED","investment_thesis":"District cooling utility; regulated-style cash flows, closed two largest-ever transactions in 2025 (AED3.87bn).","evidence_grade":"Official"},{"holding_name":"CoolIT Systems","sector_name":"Technology","ai_exposure":"High","country":"Canada","region":"North America","platform_name":"Private Equity","ownership":"Minority stake - agreed sale to Ecolab in KKR-led US$4.75bn transaction (2026)","listing_status":"Private","ticker":"-","investment_thesis":"Liquid cooling for AI data centres. Realisation demonstrating monetisation of the AI-infrastructure theme.","evidence_grade":"Official"},{"holding_name":"CredibleX","sector_name":"Financial Services","ai_exposure":"High","country":"United Arab Emirates","region":"Middle East","platform_name":"UAE Investments","ownership":"Lead investor, Series A (2026)","listing_status":"Private","ticker":"-","investment_thesis":"UAE embedded-finance platform accelerating SME lending. Direct fintech exposure.","evidence_grade":"Official"},{"holding_name":"Power Factors","sector_name":"Technology","ai_exposure":"High","country":"Canada","region":"North America","platform_name":"Private Equity","ownership":"Minority stake (2026)","listing_status":"Private","ticker":"-","investment_thesis":"Renewable-asset performance software; data layer for the energy transition.","evidence_grade":"Official"},{"holding_name":"TBX Nexxia (JV with Tubacex)","sector_name":"Industrials & Business Services","ai_exposure":"Medium","country":"United Arab Emirates","region":"Middle East","platform_name":"UAE Investments","ownership":"Joint venture launched in Abu Dhabi (2026)","listing_status":"Private","ticker":"-","investment_thesis":"End-to-end corrosion-resistant-alloy OCTG platform serving critical energy supply chains.","evidence_grade":"Official"},{"holding_name":"Aldar / Mubadala JV - The Link, Masdar City","sector_name":"Real Estate & Infrastructure","ai_exposure":"Low","country":"United Arab Emirates","region":"Middle East","platform_name":"Real Assets","ownership":"50/50 joint venture","listing_status":"Private","ticker":"-","investment_thesis":"Prime Abu Dhabi commercial real estate anchored to the sustainability cluster.","evidence_grade":"Official"},{"holding_name":"Hornsea 3 Offshore Wind Farm","sector_name":"Energy & Sustainability","ai_exposure":"Medium","country":"United Kingdom","region":"Europe","platform_name":"Real Assets","ownership":"Consortium investor alongside Apollo funds (2026)","listing_status":"Private","ticker":"-","investment_thesis":"UK offshore wind; long-duration contracted renewable cash flows.","evidence_grade":"Official"},{"holding_name":"Greenlink Interconnector","sector_name":"Real Estate & Infrastructure","ai_exposure":"Low","country":"Ireland","region":"Europe","platform_name":"Real Assets","ownership":"Investment alongside Equitix (2026)","listing_status":"Private","ticker":"-","investment_thesis":"Ireland-UK electricity interconnector; regulated infrastructure.","evidence_grade":"Official"},{"holding_name":"Embraer partnership","sector_name":"Aerospace & Defence","ai_exposure":"Medium","country":"Brazil","region":"Latin America","platform_name":"UAE Investments","ownership":"Strategic agreement (2026)","listing_status":"Listed","ticker":"NYSE:ERJ","investment_thesis":"Aerospace industrial content and localisation for the UAE.","evidence_grade":"Official"},{"holding_name":"Container leasing platforms (with Stonepeak)","sector_name":"Mobility & Logistics","ai_exposure":"Low","country":"United States","region":"North America","platform_name":"Real Assets","ownership":"Partnership investment (2026)","listing_status":"Private","ticker":"-","investment_thesis":"Global-trade linked leasing assets with contracted yields.","evidence_grade":"Official"},{"holding_name":"MGX","sector_name":"Technology","ai_exposure":"High","country":"United Arab Emirates","region":"Middle East","platform_name":"UAE Investments","ownership":"AI-focused investment vehicle established with G42","listing_status":"Private","ticker":"-","investment_thesis":"Dedicated artificial-intelligence and advanced-technology capital vehicle; core to Abu Dhabi's AI ambition.","evidence_grade":"Press reporting"},{"holding_name":"Barings Global Real Estate Debt Partnership","sector_name":"Real Estate & Infrastructure","ai_exposure":"Low","country":"Multi-geography","region":"Global","platform_name":"Credit and Special Situations","ownership":"US$500m partnership (2025)","listing_status":"Private","ticker":"-","investment_thesis":"Senior real-estate credit; floating-rate income with downside protection.","evidence_grade":"Official"}],"transactions":[{"announce_date":"2025-12-31","year":"2025","target":"Corient tack-on acquisitions","deal_type":"Add-on","sector_name":"Financial Services","country":"United States","region":"North America","platform_name":"Credit and Special Situations","value_usd_m":"","disclosure_note":"Value not disclosed"},{"announce_date":"2025-12-31","year":"2025","target":"ADIC indirect deployments","deal_type":"Fund deployment","sector_name":"Multi-sector","country":"Multi-geography","region":"Global","platform_name":"Credit and Special Situations","value_usd_m":19061.0,"disclosure_note":"AED70bn disclosed"},{"announce_date":"2025-12-31","year":"2025","target":"Al Maryah Island transformation","deal_type":"Development","sector_name":"Real Estate & Infrastructure","country":"United Arab Emirates","region":"Middle East","platform_name":"Real Assets","value_usd_m":16338.0,"disclosure_note":"AED60bn+ disclosed"},{"announce_date":"2025-12-31","year":"2025","target":"Tabreed - two largest ever transactions","deal_type":"Acquisition","sector_name":"Real Estate & Infrastructure","country":"United Arab Emirates","region":"Middle East","platform_name":"UAE Investments","value_usd_m":1054.0,"disclosure_note":"AED3.87bn disclosed"},{"announce_date":"2025-12-31","year":"2025","target":"Fortress strategic partnership","deal_type":"Partnership","sector_name":"Financial Services","country":"United States","region":"North America","platform_name":"Credit and Special Situations","value_usd_m":1000.0,"disclosure_note":"Seeks to deploy US$1bn"},{"announce_date":"2025-12-31","year":"2025","target":"Nord Anglia Education stake","deal_type":"Minority acquisition","sector_name":"Consumer & Education","country":"United Kingdom","region":"Europe","platform_name":"Private Equity","value_usd_m":600.0,"disclosure_note":"US$600m disclosed"},{"announce_date":"2025-12-31","year":"2025","target":"Mubadala Capital Co-Investment Fund I close","deal_type":"Fund close","sector_name":"Financial Services","country":"Multi-geography","region":"Global","platform_name":"Credit and Special Situations","value_usd_m":550.0,"disclosure_note":"US$550m+ disclosed"},{"announce_date":"2025-12-31","year":"2025","target":"Barings Global Real Estate Debt Partnership","deal_type":"Credit partnership","sector_name":"Real Estate & Infrastructure","country":"Multi-geography","region":"Global","platform_name":"Credit and Special Situations","value_usd_m":500.0,"disclosure_note":"US$500m disclosed"},{"announce_date":"2026-03-31","year":"2026","target":"WHOOP Series G","deal_type":"Growth equity","sector_name":"Healthcare & Life Sciences","country":"United States","region":"North America","platform_name":"Private Equity","value_usd_m":575.0,"disclosure_note":"Round size US$575m at US$10.1bn valuation"},{"announce_date":"2026-06-15","year":"2026","target":"Mubadala x WHOOP UAE partnership","deal_type":"Partnership","sector_name":"Healthcare & Life Sciences","country":"United Arab Emirates","region":"Middle East","platform_name":"UAE Investments","value_usd_m":"","disclosure_note":"Value not disclosed"},{"announce_date":"2026-05-20","year":"2026","target":"CredibleX Series A (lead investor)","deal_type":"Venture","sector_name":"Financial Services","country":"United Arab Emirates","region":"Middle East","platform_name":"UAE Investments","value_usd_m":"","disclosure_note":"Value not disclosed"},{"announce_date":"2026-05-05","year":"2026","target":"Power Factors minority stake","deal_type":"Minority acquisition","sector_name":"Technology","country":"Canada","region":"North America","platform_name":"Private Equity","value_usd_m":"","disclosure_note":"Value not disclosed"},{"announce_date":"2026-04-20","year":"2026","target":"Container leasing platforms with Stonepeak","deal_type":"Platform investment","sector_name":"Mobility & Logistics","country":"United States","region":"North America","platform_name":"Real Assets","value_usd_m":"","disclosure_note":"Value not disclosed"},{"announce_date":"2026-04-10","year":"2026","target":"TBX Nexxia JV with Tubacex","deal_type":"Joint venture","sector_name":"Industrials & Business Services","country":"United Arab Emirates","region":"Middle East","platform_name":"UAE Investments","value_usd_m":"","disclosure_note":"Value not disclosed"},{"announce_date":"2026-03-15","year":"2026","target":"Aldar/Mubadala JV acquires The Link, Masdar City","deal_type":"Real estate acquisition","sector_name":"Real Estate & Infrastructure","country":"United Arab Emirates","region":"Middle East","platform_name":"Real Assets","value_usd_m":"","disclosure_note":"Value not disclosed"},{"announce_date":"2026-02-25","year":"2026","target":"CoolIT minority stake sale to Ecolab (KKR-led)","deal_type":"Exit","sector_name":"Technology","country":"Canada","region":"North America","platform_name":"Private Equity","value_usd_m":4750.0,"disclosure_note":"US$4.75bn total transaction value"},{"announce_date":"2026-07-20","year":"2026","target":"Embraer aerospace agreement","deal_type":"Strategic agreement","sector_name":"Aerospace & Defence","country":"Brazil","region":"Latin America","platform_name":"UAE Investments","value_usd_m":"","disclosure_note":"Value not disclosed"},{"announce_date":"2026-07-05","year":"2026","target":"Greenlink investment with Equitix","deal_type":"Infrastructure","sector_name":"Real Estate & Infrastructure","country":"Ireland","region":"Europe","platform_name":"Real Assets","value_usd_m":"","disclosure_note":"Value not disclosed"},{"announce_date":"2026-06-30","year":"2026","target":"Hornsea 3 offshore wind (Apollo-led consortium)","deal_type":"Infrastructure","sector_name":"Energy & Sustainability","country":"United Kingdom","region":"Europe","platform_name":"Real Assets","value_usd_m":"","disclosure_note":"Value not disclosed"}],"allocation":[{"asset_class":"Private","weight_pct":42.0,"implied_usd_bn":161.7},{"asset_class":"Public","weight_pct":20.0,"implied_usd_bn":77.0},{"asset_class":"Real Estate & Infrastructure","weight_pct":17.0,"implied_usd_bn":65.5},{"asset_class":"Alternatives","weight_pct":16.0,"implied_usd_bn":61.6},{"asset_class":"Credit","weight_pct":5.0,"implied_usd_bn":19.2}],"flows":[{"year":2023,"deployments_usd_bn":24.0,"proceeds_usd_bn":27.0},{"year":2024,"deployments_usd_bn":32.0,"proceeds_usd_bn":30.0},{"year":2025,"deployments_usd_bn":39.0,"proceeds_usd_bn":38.0}],"kpi":{"AUM (AED bn)":1414.0,"AUM (USD bn)":385.0,"AUM growth YoY (%)":17.0,"5-year annualised IRR (%)":10.7,"10-year annualised IRR (%)":10.3,"Capital deployed (USD bn)":39.0,"Capital deployed (AED bn)":143.0,"Proceeds (USD bn)":38.0,"Proceeds (AED bn)":138.0,"Deployment growth YoY (%)":20.0,"Proceeds growth YoY (%)":27.0},"market":[{"ticker":"GFS","company":"GlobalFoundries Inc.","sector_id":1,"mkt_cap_bn":27.44,"pe_ttm":36.0,"revenue_ttm_bn":6.84},{"ticker":"UMC","company":"United Microelectronics","sector_id":1,"mkt_cap_bn":45.65,"pe_ttm":17.4,"revenue_ttm_bn":7.88},{"ticker":"TSEM","company":"Tower Semiconductor","sector_id":1,"mkt_cap_bn":26.42,"pe_ttm":92.65,"revenue_ttm_bn":1.71},{"ticker":"TSM","company":"TSMC","sector_id":1,"mkt_cap_bn":1850.0,"pe_ttm":26.56,"revenue_ttm_bn":139.57},{"ticker":"ON","company":"ON Semiconductor","sector_id":1,"mkt_cap_bn":31.58,"pe_ttm":51.93,"revenue_ttm_bn":6.2},{"ticker":"OMV","company":"OMV Aktiengesellschaft","sector_id":3,"mkt_cap_bn":17.62,"pe_ttm":16.74,"revenue_ttm_bn":23.38},{"ticker":"SHEL","company":"Shell plc","sector_id":3,"mkt_cap_bn":254.3,"pe_ttm":9.79,"revenue_ttm_bn":296.6},{"ticker":"TTE","company":"TotalEnergies SE","sector_id":3,"mkt_cap_bn":195.47,"pe_ttm":10.96,"revenue_ttm_bn":196.38},{"ticker":"E","company":"Eni S.p.A.","sector_id":3,"mkt_cap_bn":79.46,"pe_ttm":13.82,"revenue_ttm_bn":102.74},{"ticker":"BP","company":"BP p.l.c.","sector_id":3,"mkt_cap_bn":114.52,"pe_ttm":20.86,"revenue_ttm_bn":215.28},{"ticker":"BX","company":"Blackstone Inc.","sector_id":4,"mkt_cap_bn":169.49,"pe_ttm":30.51,"revenue_ttm_bn":15.48},{"ticker":"APO","company":"Apollo Global Management","sector_id":4,"mkt_cap_bn":75.06,"pe_ttm":81.92,"revenue_ttm_bn":35.6},{"ticker":"ARES","company":"Ares Management","sector_id":4,"mkt_cap_bn":46.56,"pe_ttm":62.43,"revenue_ttm_bn":5.99},{"ticker":"OWL","company":"Blue Owl Capital","sector_id":4,"mkt_cap_bn":17.8,"pe_ttm":95.88,"revenue_ttm_bn":2.99},{"ticker":"TPG","company":"TPG Inc.","sector_id":4,"mkt_cap_bn":18.74,"pe_ttm":139.03,"revenue_ttm_bn":3.73},{"ticker":"TMO","company":"Thermo Fisher Scientific","sector_id":2,"mkt_cap_bn":209.27,"pe_ttm":30.89,"revenue_ttm_bn":46.34},{"ticker":"WST","company":"West Pharmaceutical Services","sector_id":2,"mkt_cap_bn":24.33,"pe_ttm":44.31,"revenue_ttm_bn":3.33},{"ticker":"CRL","company":"Charles River Laboratories","sector_id":2,"mkt_cap_bn":11.32,"pe_ttm":0.0,"revenue_ttm_bn":4.03},{"ticker":"ICLR","company":"ICON plc","sector_id":2,"mkt_cap_bn":12.08,"pe_ttm":434.32,"revenue_ttm_bn":8.29},{"ticker":"A","company":"Agilent Technologies","sector_id":2,"mkt_cap_bn":39.2,"pe_ttm":28.06,"revenue_ttm_bn":7.23}],"cases":{"gfs":{"case":"GlobalFoundries Inc. (NASDAQ: GFS)","sector":"Technology - specialty semiconductor foundry","mubadala_link":"Controlling shareholder (~80%) via Mubadala Technology Investment Company","valuation_date":"2026-08-04","market":{"price":50.01,"shares_m":548.7,"market_cap_usd_m":27440.0,"enterprise_value_usd_m":25400.0,"net_cash_usd_m":2040.0,"revenue_ttm_usd_m":6840.0,"ebitda_ttm_usd_m":2100.0,"ev_ebitda_market":12.1},"wacc":{"risk_free":0.0425,"beta_used":1.76,"equity_risk_premium":0.05,"extra_equity_premium":0.0,"cost_of_equity":0.1305,"cost_of_debt_pretax":0.055,"tax_rate":0.15,"cost_of_debt_after_tax":0.04675,"weight_equity":0.9408860238650391,"weight_debt":0.059113976134960944,"wacc":0.12554920449869703},"assumptions":{"base_revenue":6840.0,"revenue_growth":[0.08,0.1,0.1,0.07,0.05],"ebit_margin":[0.13,0.15,0.17,0.19,0.2],"da_pct_revenue":[0.17,0.165,0.16,0.155,0.15],"capex_pct_revenue":[0.13,0.135,0.135,0.13,0.125],"nwc_pct_delta_revenue":0.02,"tax_rate":0.15,"terminal_growth":0.025},"fcff_schedule":[{"year":1,"revenue":7387.200000000001,"growth":0.08,"ebit":960.3360000000001,"ebit_margin":0.13,"nopat":816.2856,"da":1255.8240000000003,"capex":960.3360000000001,"delta_nwc":10.944000000000015,"fcff":1100.8296,"discount_factor":0.9425995982735629,"pv_fcff":1037.641538727647},{"year":2,"revenue":8125.920000000002,"growth":0.1,"ebit":1218.8880000000001,"ebit_margin":0.15,"nopat":1036.0548000000001,"da":1340.7768000000003,"capex":1096.9992000000004,"delta_nwc":14.774400000000023,"fcff":1265.058,"discount_factor":0.8374940899809533,"pv_fcff":1059.4785984831249},{"year":3,"revenue":8938.512000000002,"growth":0.1,"ebit":1519.5470400000006,"ebit_margin":0.17,"nopat":1291.6149840000005,"da":1430.1619200000005,"capex":1206.6991200000004,"delta_nwc":16.251840000000012,"fcff":1498.8259440000008,"discount_factor":0.7441084762158625,"pv_fcff":1115.2890893026422},{"year":4,"revenue":9564.207840000003,"growth":0.07,"ebit":1817.1994896000006,"ebit_margin":0.19,"nopat":1544.6195661600004,"da":1482.4522152000004,"capex":1243.3470192000004,"delta_nwc":12.513916800000006,"fcff":1771.2108453600003,"discount_factor":0.6611359184503444,"pv_fcff":1171.0111090162948},{"year":5,"revenue":10042.418232000004,"growth":0.05,"ebit":2008.483646400001,"ebit_margin":0.2,"nopat":1707.2110994400007,"da":1506.3627348000005,"capex":1255.3022790000005,"delta_nwc":9.564207840000018,"fcff":1948.7073474000003,"discount_factor":0.5874152984898662,"pv_fcff":1144.7005081423665}],"dcf":{"pv_explicit":5528.120843672075,"terminal_value":19874.87593119403,"pv_terminal":11674.806177571398,"enterprise_value":17202.92702124347,"terminal_pct_of_ev":0.6786523109209536},"equity_bridge":{"enterprise_value":17202.92702124347,"less_net_debt":2040.0,"less_minorities":-0.0,"plus_associates":0.0,"equity_value":19242.92702124347,"shares":548.7,"value_per_share":35.07003284352737},"dcf_value_per_share":35.07,"dcf_upside_pct":-29.9,"sensitivity":{"wacc_axis":[0.1105,0.118,0.1255,0.133,0.1405],"growth_axis":[0.015,0.02,0.025,0.03,0.035],"values":[[37.7,35.15,32.96,31.04,29.36],[39.12,36.34,33.96,31.9,30.1],[40.71,37.66,35.07,32.84,30.9],[42.5,39.13,36.29,33.87,31.78],[44.53,40.78,37.65,35.01,32.74]]},"comparables":{"ev_ebitda_set":{"UMC":14.53,"TSEM":90.77},"ev_ebitda_stats":{"n":2,"min":14.53,"q1":33.589999999999996,"median":52.65,"mean":52.65,"q3":71.71,"max":90.77,"kept":["UMC","TSEM"],"dropped_as_outliers":[]},"pe_set":{"UMC":17.4,"TSM":26.56,"ON":51.93,"TSEM":92.65},"pe_stats":{"n":3,"min":17.4,"q1":21.979999999999997,"median":26.56,"mean":31.963333333333328,"q3":39.245,"max":51.93,"kept":["UMC","TSM","ON"],"dropped_as_outliers":[]},"excluded_from_applied_range":["TSEM"],"exclusion_rationale":"Tower Semiconductor trades on 90.8x EV/EBITDA after a +425% 12-month re-rating; including it would distort the central tendency of the peer group.","applied_ev_ebitda_range":{"low":11.0,"mid":14.5,"high":17.0},"implied_value_per_share":{"low":45.82,"mid":59.21,"high":68.78},"implied_upside_pct_mid":18.4},"reverse_dcf":{"question":"What steady-state EBIT margin does the current $50.01 share price require?","implied_terminal_ebit_margin":0.3338,"base_case_terminal_ebit_margin":0.2,"ttm_ebit_margin":0.1208,"interpretation":"The market is underwriting a structurally higher through-cycle margin than our base case, consistent with capitalising silicon-photonics, quantum and automotive content that is not yet in the reported numbers."},"football_field":{"DCF base":35.07,"DCF low (WACC +1.5%, g -1.0%)":29.36,"DCF high (WACC -1.5%, g +1.0%)":44.53,"Comparables low (11.0x EV/EBITDA)":45.82,"Comparables mid (14.5x EV/EBITDA)":59.21,"Comparables high (17.0x EV/EBITDA)":68.78,"Current market price":50.01,"Sell-side consensus target":80.24}},"omv":{"case":"OMV Aktiengesellschaft (VIE: OMV)","sector":"Energy & Sustainability - integrated oil, gas and chemicals","mubadala_link":"24.9% strategic stake via Mubadala Petroleum & Petrochemicals Holding","valuation_date":"2026-06-30","market":{"price_eur":54.6,"shares_m":326.0,"market_cap_eur_m":17620.0,"enterprise_value_eur_m":24160.0,"net_debt_eur_m":2790.0,"implied_minorities_eur_m":3750.0,"ev_ebitda_market":4.47,"dividend_per_share_eur":4.4,"dividend_yield_pct":8.06},"beta_judgement":{"raw_5y_beta":0.21,"beta_used":0.9,"rationale":"Raw beta of 0.21 is not economically credible for an integrated energy producer; thin free float and a domestic index listing suppress measured covariance. A European integrated-energy sector beta of 0.90 is substituted and disclosed."},"wacc":{"risk_free":0.0275,"beta_used":0.9,"equity_risk_premium":0.055,"extra_equity_premium":0.01,"cost_of_equity":0.087,"cost_of_debt_pretax":0.045,"tax_rate":0.3,"cost_of_debt_after_tax":0.0315,"weight_equity":0.6874756145142411,"weight_debt":0.3125243854857589,"wacc":0.06965489660554038},"assumptions":{"base_revenue":23378.0,"revenue_growth":[-0.03,0.01,0.02,0.02,0.02],"ebit_margin":[0.14,0.145,0.15,0.15,0.15],"da_pct_revenue":[0.08,0.079,0.078,0.077,0.076],"capex_pct_revenue":[0.15,0.135,0.125,0.118,0.115],"nwc_pct_delta_revenue":0.03,"tax_rate":0.3,"terminal_growth":0.01},"fcff_schedule":[{"year":1,"revenue":22676.66,"growth":-0.03,"ebit":3174.7324000000003,"ebit_margin":0.14,"nopat":2222.31268,"da":1814.1328,"capex":3401.499,"delta_nwc":-21.040200000000002,"fcff":655.9866800000005,"discount_factor":0.9668720413571958,"pv_fcff":634.2551803947301},{"year":2,"revenue":22903.4266,"growth":0.01,"ebit":3320.9968569999996,"ebit_margin":0.145,"nopat":2324.6977998999996,"da":1809.3707014,"capex":3091.962591,"delta_nwc":6.80299799999997,"fcff":1035.3029122999994,"discount_factor":0.9038721523391566,"pv_fcff":935.7814716635976},{"year":3,"revenue":23361.495132,"growth":0.02,"ebit":3504.2242698,"ebit_margin":0.15,"nopat":2452.95698886,"da":1822.196620296,"capex":2920.1868915,"delta_nwc":13.742055960000034,"fcff":1341.224661696,"discount_factor":0.8449772387951356,"pv_fcff":1133.304311243826},{"year":4,"revenue":23828.72503464,"growth":0.02,"ebit":3574.3087551959998,"ebit_margin":0.15,"nopat":2502.0161286371995,"da":1834.8118276672799,"capex":2811.7895540875197,"delta_nwc":14.016897079199989,"fcff":1511.0215051377602,"discount_factor":0.7899198268627985,"pv_fcff":1193.5858457243846},{"year":5,"revenue":24305.2995353328,"growth":0.02,"ebit":3645.79493029992,"ebit_margin":0.15,"nopat":2552.056451209944,"da":1847.2027646852928,"capex":2795.1094465632723,"delta_nwc":14.297235020784028,"fcff":1589.8525343111803,"discount_factor":0.7384498708636051,"pv_fcff":1174.0263986542664}],"dcf":{"pv_explicit":5070.953207680805,"terminal_value":26897.00267427625,"pv_terminal":19862.08815143734,"enterprise_value":24933.041359118142,"terminal_pct_of_ev":0.7966171421030299},"equity_bridge":{"enterprise_value":24933.041359118142,"less_net_debt":-2790.0,"less_minorities":-3750.0,"plus_associates":0.0,"equity_value":18393.041359118142,"shares":326.0,"value_per_share":56.42037226723357},"dcf_value_per_share":56.42,"dcf_upside_pct":3.3,"sensitivity":{"wacc_axis":[0.0547,0.0622,0.0697,0.0772,0.0847],"growth_axis":[0.0,0.005,0.01,0.015,0.02],"values":[[66.27,55.56,47.16,40.4,34.84],[73.72,61.11,51.43,43.77,37.56],[82.83,67.72,56.42,47.65,40.64],[94.23,75.73,62.32,52.15,44.17],[108.92,85.65,69.4,57.43,48.24]]},"dividend_sustainability":[{"year":2021,"fcf_eur_m":4520,"dps_eur":2.3,"dividend_cost_eur_m":750.0,"fcf_cover_x":6.03},{"year":2022,"fcf_eur_m":4815,"dps_eur":2.8,"dividend_cost_eur_m":913.0,"fcf_cover_x":5.27},{"year":2023,"fcf_eur_m":2222,"dps_eur":2.95,"dividend_cost_eur_m":962.0,"fcf_cover_x":2.31},{"year":2024,"fcf_eur_m":1943,"dps_eur":3.05,"dividend_cost_eur_m":994.0,"fcf_cover_x":1.95},{"year":2025,"fcf_eur_m":1366,"dps_eur":3.15,"dividend_cost_eur_m":1027.0,"fcf_cover_x":1.33}],"dividend_conclusion":"Free-cash-flow cover of the ordinary dividend has fallen from 6.0x in 2021 to 1.3x in 2025 while the dividend per share has been raised every year. The payout is still covered, but the margin of safety has largely gone; a further leg down in refining or chemicals margins would force the distribution to be funded from the balance sheet.","comparables":{"pe_set":{"Shell":9.79,"TotalEnergies":10.96,"Eni":13.82,"BP":20.86},"pe_stats":{"n":4,"min":9.79,"q1":10.6675,"median":12.39,"mean":13.8575,"q3":15.58,"max":20.86,"kept":["Shell","TotalEnergies","Eni","BP"],"dropped_as_outliers":[]},"eps_ttm_reported_eur":7.2,"eps_history":{"2023":4.52,"2024":4.24,"2025":3.11},"eps_normalised_eur":3.96,"normalisation_note":"TTM EPS of 7.20 includes EUR 1,303m from discontinued operations and is not a capitalisable earnings stream; FY2025 EPS of 3.11 absorbed EUR 497m of write-downs. A three-year average is used instead.","implied_value_per_share":{"low":38.77,"median":49.06,"high":61.7},"implied_upside_pct_median":-10.1},"football_field":{"DCF base":56.42,"DCF low (WACC +1.5%, g -1.0%)":34.84,"DCF high (WACC -1.5%, g +1.0%)":108.92,"Comparables low (9.8x normalised P/E)":38.77,"Comparables median (12.4x normalised P/E)":49.06,"Comparables high (15.6x normalised P/E)":61.7,"Current market price":54.6,"Sell-side consensus target":61.0}},"whoop":{"case":"WHOOP Inc. (private)","sector":"Healthcare & Life Sciences - AI-enabled continuous biometrics","mubadala_link":"Participating investor in the March 2026 Series G; separate UAE preventative-health partnership announced 2026","valuation_date":"2026-03-31","known_facts":{"post_money_usd_m":10100.0,"round_size_usd_m":575.0,"pre_money_usd_m":9525.0,"run_rate_revenue_usd_m":1100.0,"members_m":2.5,"bookings_growth_2025_pct":103.0,"cash_flow_positive_2025":true,"source":"Mubadala press release, 31 March 2026"},"implied_entry_multiples":{"ev_revenue_post_money":9.18,"ev_revenue_pre_money":8.66,"revenue_per_member_usd":440.0},"reverse_dcf":{"method":"Solve for the revenue CAGR that makes a 10-year DCF equal the price actually paid","assumptions":{"discount_rate":0.18,"terminal_growth":0.035,"horizon_years":10,"terminal_fcf_margin":0.2,"starting_fcf_margin":0.04},"implied_revenue_cagr":0.3482,"implied_revenue_year10_usd_m":21830.0,"implied_revenue_year10_usd_bn":21.83,"interpretation":"The Series G price requires revenue to compound at 34.8% a year for a decade, reaching about US$21.8bn by 2035, with free-cash-flow margins reaching 20%. That is demanding but not absurd against 2025 bookings growth of 103%; the question is durability, not direction."},"scenarios":{"Bear - growth fades to 12%, margin caps at 12%":{"revenue_cagr":0.12,"terminal_fcf_margin":0.12,"discount_rate":0.2,"revenue_year10_usd_m":3416.0,"value_usd_m":1025.0,"vs_pre_money_pct":-89.2},"Base - reverse-DCF solution":{"revenue_cagr":0.3482,"terminal_fcf_margin":0.2,"discount_rate":0.18,"revenue_year10_usd_m":21830.0,"value_usd_m":9525.0,"vs_pre_money_pct":0.0},"Bull - platform economics, 25% margin":{"revenue_cagr":0.42,"terminal_fcf_margin":0.25,"discount_rate":0.16,"revenue_year10_usd_m":36667.0,"value_usd_m":24624.0,"vs_pre_money_pct":158.5}},"listed_reference_multiples":{"peers":{"Thermo Fisher":{"mkt_cap_bn":209.27,"rev_bn":46.34,"price_to_sales":4.52},"West Pharmaceutical":{"mkt_cap_bn":24.33,"rev_bn":3.33,"price_to_sales":7.31},"Agilent":{"mkt_cap_bn":39.2,"rev_bn":7.23,"price_to_sales":5.42},"ICON plc":{"mkt_cap_bn":12.08,"rev_bn":8.29,"price_to_sales":1.46},"Charles River":{"mkt_cap_bn":11.32,"rev_bn":4.03,"price_to_sales":2.81}},"median_price_to_sales":4.52,"whoop_price_to_sales_pre_money":8.66,"premium_to_listed_median_x":1.92,"note":"WHOOP is priced at a large premium to listed healthcare platforms. That premium is the market paying for growth rate and data-asset optionality, not for current profitability."},"sensitivity_value_usd_bn":{"revenue_cagr_axis":[0.1,0.15,0.2,0.25,0.3,0.35],"terminal_fcf_margin_axis":[0.12,0.16,0.2,0.24,0.28],"grid":[[1.07,1.52,2.14,3.02,4.24,5.92],[1.38,1.96,2.79,3.95,5.56,7.78],[1.68,2.41,3.43,4.87,6.87,9.64],[1.99,2.85,4.07,5.79,8.19,11.5],[2.3,3.3,4.72,6.72,9.51,13.36]]},"key_risks":["Consumer subscription churn is the single biggest swing factor and is not disclosed.","Hardware refresh cycles create lumpy working capital that a revenue-multiple lens hides.","Competitive encroachment from Apple, Samsung and Oura on the same wrist.","Regulatory reclassification of predictive health features as medical devices.","A 9.2x revenue entry multiple leaves no margin for a growth disappointment."]},"mcap":{"case":"Mubadala Capital","sector":"Financial Services - alternative asset management","mubadala_link":"Wholly-owned subsidiary within the Credit and Special Situations platform","valuation_date":"2026-08-04","hard_facts":{"aggregate_aum_usd_bn":30.0,"businesses":["Private Equity","Brazil","Venture Capital","Solutions"],"source":"mubadala.com - Our Structure (Official)"},"assumptions":{"third_party_share_of_aum":0.6,"management_fee_rate":0.012,"balance_sheet_fee_rate":0.0,"fre_margin":0.35,"tax_rate":0.0},"assumption_warning":"Every input except AUM is an author assumption. Mubadala Capital does not publish fee rates, FRE or margins. Treat the output as a framework, not a valuation opinion.","derived":{"third_party_aum_usd_bn":18.0,"balance_sheet_aum_usd_bn":12.0,"management_fee_revenue_usd_m":216.0,"fee_related_earnings_usd_m":75.6},"listed_cohort":{"Blackstone (BX)":{"mkt_cap_bn":169.49,"revenue_bn":15.48,"pe":30.51,"price_to_sales":10.95},"Apollo (APO)":{"mkt_cap_bn":75.06,"revenue_bn":35.6,"pe":81.92,"price_to_sales":2.11},"Ares (ARES)":{"mkt_cap_bn":46.56,"revenue_bn":5.99,"pe":62.43,"price_to_sales":7.77},"Blue Owl (OWL)":{"mkt_cap_bn":17.8,"revenue_bn":2.99,"pe":95.88,"price_to_sales":5.95},"TPG (TPG)":{"mkt_cap_bn":18.74,"revenue_bn":3.73,"pe":139.03,"price_to_sales":5.02}},"cohort_stats":{"price_to_sales":{"min":2.11,"q1":5.02,"median":5.95,"mean":6.359999999999999,"q3":7.77,"max":10.95},"pe":{"min":30.51,"q1":62.43,"median":81.92,"mean":81.954,"q3":95.88,"max":139.03}},"apollo_exclusion_note":"Apollo's reported revenue consolidates Athene's insurance premiums; its 2.1x price/sales is not comparable to a pure fee stream and is excluded from the applied range.","valuation_range_usd_bn":{"PS low  (5.0x fee revenue)":1.08,"PS median (peer ex-Apollo)":1.48,"PS high (10.9x, Blackstone)":2.35,"PE cross-check (30.5x FRE, BX)":2.31},"reported_not_applied_usd_bn":{"PE at cohort median (81.9x FRE) - reported, not applied":6.19},"central_before_discount_usd_bn":1.89,"private_company_discount":0.25,"central_after_discount_usd_bn":1.42,"as_pct_of_group_aum":0.37,"sensitivity_usd_bn":{"fee_rate_axis":[0.009,0.0105,0.012,0.0135,0.015],"price_to_sales_axis":[4.0,5.0,6.0,8.0,10.0],"grid":[[0.49,0.61,0.73,0.97,1.22],[0.57,0.71,0.85,1.13,1.42],[0.65,0.81,0.97,1.3,1.62],[0.73,0.91,1.09,1.46,1.82],[0.81,1.01,1.22,1.62,2.03]]},"strategic_conclusion":"On these assumptions the fee-earning franchise is worth roughly US$1.4bn - about 0.4% of group AUM. The strategic point is not the number but the structure: Mubadala Capital converts third-party capital into a fee annuity that is valued on a multiple of earnings, on top of the investment return earned on Mubadala's own balance sheet. It is the only part of the group that creates value which is independent of the direction of asset prices.","why_this_matters_to_the_strategy":["Third-party capital lets Mubadala underwrite deals larger than its own balance sheet would allow.","Fee income is counter-cyclical relative to realisations: it keeps paying when exit markets close.","A visible franchise valuation gives the board a benchmark for whether to keep scaling it."]}},"optimiser":{"question":"Is Mubadala's disclosed 2025 asset-class mix efficient, and what does it imply?","assets":["Private","Public","Real Estate & Infra","Alternatives","Credit"],"actual_weights_official":[0.42,0.2,0.17,0.16,0.05],"capital_market_assumptions":{"WARNING":"Author's assumptions. Mubadala publishes weights, not returns/vols/correlations.","expected_return":[0.115,0.08,0.075,0.09,0.06],"volatility":[0.17,0.165,0.12,0.13,0.07],"correlation_matrix":[[1.0,0.7,0.45,0.65,0.35],[0.7,1.0,0.4,0.6,0.3],[0.45,0.4,1.0,0.35,0.3],[0.65,0.6,0.35,1.0,0.4],[0.35,0.3,0.3,0.4,1.0]],"risk_free":0.0425},"actual_portfolio":{"expected_return":0.09445,"volatility":0.12487122967281135,"sharpe":0.41602857708793156},"max_sharpe_portfolio":{"weights":{"Private":0.3843,"Public":0.0,"Real Estate & Infra":0.1452,"Alternatives":0.214,"Credit":0.2565},"expected_return":0.08973344880936619,"volatility":0.10393549603281468,"sharpe":0.45444964051986214},"min_variance_portfolio":{"weights":{"Private":0.0,"Public":0.0,"Real Estate & Infra":0.1545,"Alternatives":0.0421,"Credit":0.8034},"expected_return":0.06358014955735723,"volatility":0.06692720325426249,"sharpe":0.3149713200665481},"efficiency_test":{"efficient_volatility_at_same_return":0.11464068355538161,"actual_volatility":0.12487122967281135,"excess_volatility_carried_pp":1.02,"efficient_weights_at_same_return":{"Private":0.4592,"Public":0.0,"Real Estate & Infra":0.1405,"Alternatives":0.2362,"Credit":0.1641}},"reverse_optimisation":{"implied_risk_aversion":3.331660769081983,"implied_expected_returns":{"Private":0.1096,"Public":0.1,"Real Estate & Infra":0.0721,"Alternatives":0.0839,"Credit":0.0548},"reading":"Treating the published mix as an optimal solution and inverting the optimisation tells us what return assumptions the allocator must hold. This is a cleaner way to interrogate an allocation than arguing about whether it is 'right'."},"efficient_frontier":[{"target_return":0.06,"volatility":0.0699999999999275,"weights":[0.0,0.0,2.1328908149202686e-12,0.0,0.9999999999978672]},{"target_return":0.06141025641025641,"volatility":0.0676648049110764,"weights":[0.0,4.88160085761817e-18,0.09401709401709413,3.727188023094679e-18,0.9059829059829058]},{"target_return":0.06282051282051282,"volatility":0.06699344274013944,"weights":[7.757919228897728e-19,1.098710803224534e-18,0.14882514281639317,0.019604522608897376,0.8315703345747095]},{"target_return":0.06423076923076923,"volatility":0.066975805080568,"weights":[0.0,0.0,0.15933331387072247,0.06135898389273898,0.7793077022365387]},{"target_return":0.06564102564102564,"volatility":0.06741282793680035,"weights":[0.001402081730389086,1.5754812818929986e-19,0.16912220022465105,0.10090260474869739,0.7285731132962625]},{"target_return":0.06705128205128205,"volatility":0.06817903355251237,"weights":[0.023816354543086653,0.0,0.1677192368184653,0.10751979991618797,0.7009446087222602]},{"target_return":0.06846153846153846,"volatility":0.06917300512859142,"weights":[0.04623477271063703,0.0,0.1663037269887178,0.11413566858599496,0.6733258317146503]},{"target_return":0.06987179487179487,"volatility":0.0703850938383867,"weights":[0.0686397213180188,1.2082924992582594e-17,0.16490652378245935,0.12076707808614386,0.645686676813378]},{"target_return":0.07128205128205128,"volatility":0.07180425480631017,"weights":[0.09105307297135412,0.0,0.16349967426918785,0.12738790515356063,0.6180593476058974]},{"target_return":0.0726923076923077,"volatility":0.07341848103065081,"weights":[0.11346467842092132,1.214306433183765e-17,0.16210308402067655,0.1340068038547338,0.5904254337036683]},{"target_return":0.0741025641025641,"volatility":0.07521521443220767,"weights":[0.1358762696871375,3.382710778154774e-17,0.16070079641176435,0.14062857738468604,0.5627943565164122]},{"target_return":0.07551282051282052,"volatility":0.07718171016764469,"weights":[0.1582878944604255,2.190088388420719e-17,0.1592983341384002,0.14725037699382584,0.5351633944073484]},{"target_return":0.07692307692307693,"volatility":0.0793053406733292,"weights":[0.18069951082853092,0.0,0.15789583004038152,0.15387221244550192,0.5075324466855856]},{"target_return":0.07833333333333334,"volatility":0.08157383472800064,"weights":[0.20311108755908588,7.068998164605489e-17,0.15649332633144325,0.16049412068317276,0.479901465426298]},{"target_return":0.07974358974358975,"volatility":0.08397545320299966,"weights":[0.22552266133353108,0.0,0.15509077855449416,0.16711605632719595,0.45227050378477884]},{"target_return":0.08115384615384616,"volatility":0.08649910835949384,"weights":[0.24793417976260682,0.0,0.15368822391452833,0.17373809708744328,0.42463949923542166]},{"target_return":0.08256410256410257,"volatility":0.08913443512240775,"weights":[0.2703457594273527,0.0,0.15228560905085042,0.1803600552140001,0.3970085763077968]},{"target_return":0.08397435897435898,"volatility":0.0918718242015754,"weights":[0.29275751349521667,0.0,0.15088330835008396,0.18698153692596134,0.369377641228738]},{"target_return":0.08538461538461539,"volatility":0.09470242559134893,"weights":[0.315168894309837,2.7538735181131813e-17,0.14948058733188707,0.19360391285365133,0.34174660550462455]},{"target_return":0.0867948717948718,"volatility":0.09761813110576865,"weights":[0.3375804420655552,0.0,0.14807817535427453,0.20022582830002084,0.31411555428014953]},{"target_return":0.08820512820512821,"volatility":0.10061154211443096,"weights":[0.35999203389138557,1.951563910473908e-17,0.14667563681396548,0.20684772642607757,0.28648460286857147]},{"target_return":0.08961538461538461,"volatility":0.10367592809356241,"weights":[0.3824036374083627,0.0,0.14527310389317455,0.21346960010618854,0.2588536585922743]},{"target_return":0.09102564102564102,"volatility":0.10680518011249492,"weights":[0.40481526608177276,1.5428196914468728e-16,0.14387064575783712,0.22009139010220738,0.23122269805818246]},{"target_return":0.09243589743589745,"volatility":0.10999376214140726,"weights":[0.4272268378926994,5.2475385148298415e-17,0.14246821281802874,0.22671327193139268,0.20359167735787914]},{"target_return":0.09384615384615384,"volatility":0.1132366623362272,"weights":[0.4496384999992149,1.32164244825983e-16,0.1410657223587207,0.23333501697923564,0.17596076066282879]},{"target_return":0.09525641025641025,"volatility":0.11652934591701772,"weights":[0.4720502111970867,2.1206618271394362e-17,0.13966324212965506,0.23995666690586023,0.14832987976739795]},{"target_return":0.09666666666666666,"volatility":0.11986771040916736,"weights":[0.49446179120347256,2.821636153893525e-17,0.13826084669916366,0.2465785149648853,0.12069884713247854]},{"target_return":0.09807692307692308,"volatility":0.12324804385547805,"weights":[0.5168735344942096,0.0,0.13685833107062118,0.2532001238080172,0.09306801062715223]},{"target_return":0.09948717948717949,"volatility":0.12666698624535574,"weights":[0.5392852489999371,0.0,0.1354559004724229,0.25982174284852494,0.06543710767911527]},{"target_return":0.1008974358974359,"volatility":0.13012149427180555,"weights":[0.5616972117335493,1.0722759485881639e-16,0.134053847137993,0.2664427182206256,0.03780622290783215]},{"target_return":0.10230769230769231,"volatility":0.13360880926244367,"weights":[0.5841087547583615,1.123504501238104e-16,0.1326511954283733,0.27306476214881836,0.010175287664446777]},{"target_return":0.10371794871794872,"volatility":0.13714469704644094,"weights":[0.6176335034520084,0.0,0.11485925776321158,0.2675072387847801,3.90583832637903e-17]},{"target_return":0.10512820512820513,"volatility":0.14079084287538252,"weights":[0.6576369307248033,1.3682631416767066e-16,0.08751454266099819,0.25484852661419843,0.0]},{"target_return":0.10653846153846154,"volatility":0.14454479231512526,"weights":[0.6976410983525417,0.0,0.0601710616862942,0.2421878399611641,1.951563910473908e-18]},{"target_return":0.10794871794871795,"volatility":0.14839836448311283,"weights":[0.7376438470101742,6.982261990806649e-17,0.032825215102426746,0.229530937887399,0.0]},{"target_return":0.10935897435897436,"volatility":0.15234399959272446,"weights":[0.7776454450528816,2.927345865710862e-18,0.005477451293767751,0.21687710365335056,3.3203691532368573e-19]},{"target_return":0.11076923076923077,"volatility":0.15642675659079175,"weights":[0.8307692307692313,7.470785099849239e-18,0.0,0.16923076923076874,0.0]},{"target_return":0.11217948717948718,"volatility":0.1607407311262396,"weights":[0.8871794871794877,0.0,1.4844326846886743e-18,0.11282051282051239,0.0]},{"target_return":0.1135897435897436,"volatility":0.16527090664671273,"weights":[0.9435897435897435,0.0,0.0,0.05641025641025675,4.061768654726298e-18]},{"target_return":0.115,"volatility":0.16999999999979537,"weights":[0.9999999999976065,1.531435568635775e-17,0.0,2.3935691753282362e-12,0.0]}]},"montecarlo":{"question":"What range of AUM outcomes should Mubadala plan for over 2026-2035?","inputs":{"starting_aum_usd_bn":385.0,"expected_return":0.107,"volatility_ASSUMPTION":0.125,"annual_net_flow_usd_bn":1.0,"years":10,"paths":50000,"distribution":"Student-t with 5 degrees of freedom, variance-rescaled","note":"Return is the officially disclosed 5-year IRR. Volatility is an author assumption."},"outcome_distribution_usd_bn":{"p5":558.9,"p10":646.4,"p25":819.4,"median":1057.9,"mean":1142.2,"p75":1360.2,"p90":1732.7,"p95":2003.5},"probabilities":{"P(AUM > $500bn by 2035)":0.9721,"P(AUM > $750bn by 2035)":0.8178,"P(AUM > $1,000bn by 2035)":0.5583,"P(AUM below today's $385bn in 2035)":0.0066},"implied_cagr":{"p5":0.038,"median":0.1064,"p95":0.1793},"drawdown":{"median_max_drawdown":-0.0741,"p5_max_drawdown":-0.2793,"P(peak-to-trough drawdown worse than 20%)":0.1293},"median_path_usd_bn":[385.0,426.1,471.7,522.2,577.9,639.2,706.8,780.2,862.4,955.1,1057.9],"p10_path_usd_bn":[385.0,369.3,382.0,402.4,426.3,453.8,485.5,520.5,558.8,602.2,646.4],"p90_path_usd_bn":[385.0,491.7,582.6,680.1,784.4,903.3,1030.6,1179.3,1343.4,1521.4,1732.7]},"classifier":{"purpose":"Automatically tag free-text investment announcements to a sector so portfolio dashboards stay current without manual coding.","model":"TF-IDF word (1-2 gram) + character (3-5 gram) union -> multinomial logistic regression, class-weighted","training_corpus":{"n_examples":1080,"per_class":180,"generation":"Synthetic, sampled from sector vocabulary pools derived from real Mubadala announcement language.","why_synthetic":"A 48-example hand-written corpus achieved 6% cross-validated accuracy because examples shared almost no vocabulary. Documented in the project notes as a real failure and fix."},"classes":["Energy","Financial Services","Healthcare","Industrials & Consumer","Real Estate & Infrastructure","Technology"],"cross_validated_accuracy":1.0,"classification_report":{"Energy":{"precision":1.0,"recall":1.0,"f1-score":1.0,"support":180.0},"Financial Services":{"precision":1.0,"recall":1.0,"f1-score":1.0,"support":180.0},"Healthcare":{"precision":1.0,"recall":1.0,"f1-score":1.0,"support":180.0},"Industrials & Consumer":{"precision":1.0,"recall":1.0,"f1-score":1.0,"support":180.0},"Real Estate & Infrastructure":{"precision":1.0,"recall":1.0,"f1-score":1.0,"support":180.0},"Technology":{"precision":1.0,"recall":1.0,"f1-score":1.0,"support":180.0},"accuracy":1.0,"macro avg":{"precision":1.0,"recall":1.0,"f1-score":1.0,"support":1080.0},"weighted avg":{"precision":1.0,"recall":1.0,"f1-score":1.0,"support":1080.0}},"confusion_matrix":{"labels":["Energy","Financial Services","Healthcare","Industrials & Consumer","Real Estate & Infrastructure","Technology"],"matrix":[[180,0,0,0,0,0],[0,180,0,0,0,0],[0,0,180,0,0,0],[0,0,0,180,0,0],[0,0,0,0,180,0],[0,0,0,0,0,180]]},"most_informative_terms":{"Energy":["acquisition stake","build","partnership build","develop","venture develop","strategic shareholding","shareholding","consortium investment","consortium","development company"],"Financial Services":["strategic partnership","vehicle","series round","manager","majority","majority stake","close","consolidator","insurance","investment vehicle"],"Healthcare":["minority acquisition","manufacturer","services business","growth financing","hospital","strategic investment","research capability","network","patient","services"],"Industrials & Consumer":["buyout","agreement","expansion","minority stake","strategic agreement","group","operation","business services","minority","capability"],"Real Estate & Infrastructure":["estate","partnership invest","invest","scheme","venture acquire","acquire","development","terminal","office","campus"],"Technology":["manufacturing platform","acquisition minority","series financing","solutions","solutions business","technology company","technology","engineering business","infrastructure","infrastructure provider"]},"holdout_real_headlines":{"n":12,"accuracy":0.9167,"rows":[{"headline":"Mubadala Invests in Hornsea 3 Offshore Wind Farm Alongside Consortium Led by Apollo Funds","true":"Energy","predicted":"Energy","confidence":0.883,"correct":true},{"headline":"CredibleX announces Series A round with Mubadala as lead investor to accelerate SME financing in the UAE","true":"Financial Services","predicted":"Financial Services","confidence":0.92,"correct":true},{"headline":"Mubadala Partners with WHOOP to Strengthen Preventative Health and Research Capabilities in the UAE","true":"Healthcare","predicted":"Healthcare","confidence":0.859,"correct":true},{"headline":"Mubadala Announces Acquisition of Minority Stake in Power Factors renewable performance software","true":"Technology","predicted":"Technology","confidence":0.437,"correct":true},{"headline":"Aldar and Mubadala JV acquires The Link at Masdar City commercial real estate development","true":"Real Estate & Infrastructure","predicted":"Real Estate & Infrastructure","confidence":0.984,"correct":true},{"headline":"Embraer and Mubadala sign an agreement to strengthen the UAE's position in global aerospace","true":"Industrials & Consumer","predicted":"Industrials & Consumer","confidence":0.952,"correct":true},{"headline":"Mubadala Partners with Stonepeak to Invest in Container Leasing Platforms Supporting Global Trade","true":"Real Estate & Infrastructure","predicted":"Real Estate & Infrastructure","confidence":0.914,"correct":true},{"headline":"Mubadala Agrees to Sell Minority Stake in CoolIT data centre liquid cooling to Ecolab in KKR-led transaction","true":"Technology","predicted":"Industrials & Consumer","confidence":0.452,"correct":false},{"headline":"Mubadala and Tubacex launch TBX Nexxia activating a corrosion resistant alloy platform for energy supply chains","true":"Energy","predicted":"Energy","confidence":0.688,"correct":true},{"headline":"Mubadala Capital Co-Investment Fund I holds first close above US$550 million","true":"Financial Services","predicted":"Financial Services","confidence":0.888,"correct":true},{"headline":"Mubadala acquires a stake in Nord Anglia Education international schools platform","true":"Industrials & Consumer","predicted":"Industrials & Consumer","confidence":0.612,"correct":true},{"headline":"Mubadala Partners with Equitix to Invest in Greenlink electricity interconnector","true":"Energy","predicted":"Energy","confidence":0.793,"correct":true}],"note":"These twelve headlines are real Mubadala announcements from 2025-26. None appears in the training corpus."},"limitations":["Cross-validated accuracy on synthetic data measures internal consistency, not real-world skill. The hold-out score is the honest number.","Hybrid deals (renewable-energy software, health fintech, data-centre real estate) are genuinely ambiguous - a single label is the wrong data model for them.","A bag-of-words model has no sense of word order or negation; sentence embeddings from a transformer would handle nuance better.","The classifier cannot recognise a sector it has never been trained on: it will always force a prediction into an existing class."]}};
+const C={navy:"#0B2545",gold:"#C9A227",teal:"#1B7F79",slate:"#5A6B7B",rust:"#A6432F",
+         sand:"#E4D8B4",plum:"#7A5C9E",sky:"#3E7CB1"};
+const PAL=[C.navy,C.gold,C.teal,C.slate,C.rust,C.sand,C.plum,C.sky];
+const $=s=>document.querySelector(s);
+const fmt=(n,d=0)=>n==null||isNaN(n)?"&ndash;":Number(n).toLocaleString("en-US",
+   {minimumFractionDigits:d,maximumFractionDigits:d});
+const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------------- tiny SVG chart helpers (no libraries) ---------------- */
+function svg(w,h,inner){return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid meet">${inner}</svg>`;}
+function donut(rows,valKey,labKey,cx,cy,r,ir){
+  const tot=rows.reduce((a,b)=>a+b[valKey],0); let a0=-Math.PI/2,out="";
+  rows.forEach((row,i)=>{const frac=row[valKey]/tot,a1=a0+frac*2*Math.PI;
+    const big=frac>0.5?1:0;
+    const p=[`M ${cx+r*Math.cos(a0)} ${cy+r*Math.sin(a0)}`,
+             `A ${r} ${r} 0 ${big} 1 ${cx+r*Math.cos(a1)} ${cy+r*Math.sin(a1)}`,
+             `L ${cx+ir*Math.cos(a1)} ${cy+ir*Math.sin(a1)}`,
+             `A ${ir} ${ir} 0 ${big} 0 ${cx+ir*Math.cos(a0)} ${cy+ir*Math.sin(a0)} Z`].join(" ");
+    out+=`<path d="${p}" fill="${PAL[i%PAL.length]}" stroke="#fff" stroke-width="2"><title>${esc(row[labKey])}: ${row[valKey]}%</title></path>`;
+    const am=(a0+a1)/2,rm=(r+ir)/2;
+    out+=`<text x="${cx+rm*Math.cos(am)}" y="${cy+rm*Math.sin(am)+4}" text-anchor="middle" fill="#fff" font-size="12" font-weight="700">${row[valKey]}%</text>`;
+    a0=a1;});
+  return out;
+}
+function hbars(rows,labKey,valKey,w,rowH,opt={}){
+  const max=Math.max(...rows.map(r=>r[valKey]))||1, lw=opt.labelWidth||190, pad=14;
+  const bw=w-lw-90; let out="";
+  rows.forEach((r,i)=>{const y=pad+i*rowH, len=Math.max(2,bw*r[valKey]/max);
+    const col=opt.color?opt.color(r,i):PAL[i%PAL.length];
+    out+=`<text x="${lw-8}" y="${y+rowH/2+4}" text-anchor="end" font-size="11.5" fill="${C.slate}">${esc(r[labKey])}</text>`;
+    out+=`<rect x="${lw}" y="${y+3}" width="${len}" height="${rowH-10}" rx="3" fill="${col}"><title>${esc(r[labKey])}: ${r[valKey]}</title></rect>`;
+    out+=`<text x="${lw+len+7}" y="${y+rowH/2+4}" font-size="11.5" font-weight="700" fill="${C.navy}">${opt.fmt?opt.fmt(r):fmt(r[valKey])}</text>`;});
+  return svg(w,pad*2+rows.length*rowH,out);
+}
+function groupedBars(rows,catKey,series,w,h){
+  const pad={l:52,r:14,t:14,b:34}, iw=w-pad.l-pad.r, ih=h-pad.t-pad.b;
+  const max=Math.max(...rows.flatMap(r=>series.map(s=>r[s.key])))*1.18||1;
+  const gw=iw/rows.length, bw=Math.min(34,(gw-16)/series.length);
+  let out=`<line x1="${pad.l}" y1="${pad.t+ih}" x2="${pad.l+iw}" y2="${pad.t+ih}" stroke="${C.line||'#E2E7ED'}" stroke-width="1"/>`;
+  for(let g=0;g<=4;g++){const v=max*g/4,y=pad.t+ih-ih*g/4;
+    out+=`<line x1="${pad.l}" y1="${y}" x2="${pad.l+iw}" y2="${y}" stroke="#EDF0F3"/>`;
+    out+=`<text x="${pad.l-8}" y="${y+4}" text-anchor="end" font-size="10.5" fill="${C.slate}">${fmt(v)}</text>`;}
+  rows.forEach((r,i)=>{const x0=pad.l+i*gw+gw/2-(series.length*bw)/2;
+    series.forEach((s,j)=>{const bh=ih*r[s.key]/max, x=x0+j*bw;
+      out+=`<rect x="${x}" y="${pad.t+ih-bh}" width="${bw-3}" height="${bh}" rx="2.5" fill="${s.color}"><title>${esc(r[catKey])} ${s.name}: ${r[s.key]}</title></rect>`;
+      out+=`<text x="${x+(bw-3)/2}" y="${pad.t+ih-bh-5}" text-anchor="middle" font-size="10" font-weight="700" fill="${C.navy}">${r[s.key]}</text>`;});
+    out+=`<text x="${pad.l+i*gw+gw/2}" y="${h-11}" text-anchor="middle" font-size="11.5" fill="${C.slate}">${esc(r[catKey])}</text>`;});
+  return svg(w,h,out);
+}
+function fanChart(years,med,lo,hi,w,h,threshold){
+  const pad={l:56,r:16,t:16,b:30}, iw=w-pad.l-pad.r, ih=h-pad.t-pad.b;
+  const ymax=Math.max(...hi)*1.05, ymin=0;
+  const X=i=>pad.l+iw*i/(years.length-1), Y=v=>pad.t+ih-ih*(v-ymin)/(ymax-ymin);
+  let out="";
+  for(let g=0;g<=4;g++){const v=ymax*g/4,y=Y(v);
+    out+=`<line x1="${pad.l}" y1="${y}" x2="${pad.l+iw}" y2="${y}" stroke="#EDF0F3"/>`;
+    out+=`<text x="${pad.l-8}" y="${y+4}" text-anchor="end" font-size="10.5" fill="${C.slate}">${fmt(v)}</text>`;}
+  const band=hi.map((v,i)=>`${X(i)},${Y(v)}`).join(" ")+" "+
+             lo.map((v,i)=>`${X(lo.length-1-i)},${Y(lo[lo.length-1-i])}`).join(" ");
+  out+=`<polygon points="${band}" fill="${C.gold}" opacity="0.22"/>`;
+  out+=`<polyline points="${med.map((v,i)=>`${X(i)},${Y(v)}`).join(" ")}" fill="none" stroke="${C.navy}" stroke-width="2.6"/>`;
+  if(threshold){out+=`<line x1="${pad.l}" y1="${Y(threshold)}" x2="${pad.l+iw}" y2="${Y(threshold)}" stroke="${C.rust}" stroke-dasharray="5 4"/>`;
+    out+=`<text x="${pad.l+6}" y="${Y(threshold)-6}" font-size="10.5" font-weight="700" fill="${C.rust}">US$1 trillion</text>`;}
+  years.forEach((y,i)=>{if(i%2===0)out+=`<text x="${X(i)}" y="${h-9}" text-anchor="middle" font-size="10.5" fill="${C.slate}">${y}</text>`;});
+  return svg(w,h,out);
+}
+function footballField(bands,marks,w,h,cur){
+  const pad={l:14,r:14,t:26,b:34}, iw=w-pad.l-pad.r;
+  const all=[...bands.flatMap(b=>[b.lo,b.hi]),...marks.map(m=>m.v)];
+  const min=Math.min(...all)*0.9, max=Math.max(...all)*1.06;
+  const X=v=>pad.l+iw*(v-min)/(max-min);
+  const rowH=(h-pad.t-pad.b)/bands.length;
+  let out="";
+  bands.forEach((b,i)=>{const y=pad.t+i*rowH;
+    out+=`<rect x="${X(b.lo)}" y="${y+7}" width="${Math.max(3,X(b.hi)-X(b.lo))}" height="${rowH-20}" rx="4" fill="${b.color}" opacity="0.9"/>`;
+    out+=`<text x="${X(b.lo)+8}" y="${y+rowH/2+2}" font-size="11" font-weight="700" fill="#fff">${cur}${fmt(b.lo)}</text>`;
+    out+=`<text x="${X(b.hi)-8}" y="${y+rowH/2+2}" text-anchor="end" font-size="11" font-weight="700" fill="#fff">${cur}${fmt(b.hi)}</text>`;
+    out+=`<text x="${pad.l}" y="${y+rowH-4}" font-size="10.5" fill="${C.slate}">${esc(b.name)}</text>`;
+    if(b.mid!=null)out+=`<circle cx="${X(b.mid)}" cy="${y+rowH/2-3}" r="5" fill="#fff" stroke="${b.color}" stroke-width="2"/>`;});
+  marks.forEach(m=>{out+=`<line x1="${X(m.v)}" y1="${pad.t-6}" x2="${X(m.v)}" y2="${h-pad.b+6}" stroke="${m.color}" stroke-width="2" stroke-dasharray="${m.dash||""}"/>`;
+    out+=`<text x="${X(m.v)}" y="${pad.t-11}" text-anchor="middle" font-size="10.5" font-weight="700" fill="${m.color}">${esc(m.name)} ${cur}${fmt(m.v,2)}</text>`;});
+  return svg(w,h,out);
+}
+function scatterFrontier(fr,pts,w,h){
+  const pad={l:52,r:16,t:16,b:38}, iw=w-pad.l-pad.r, ih=h-pad.t-pad.b;
+  const xs=fr.map(f=>f.volatility*100).concat(pts.map(p=>p.x));
+  const ys=fr.map(f=>f.target_return*100).concat(pts.map(p=>p.y));
+  const x0=Math.min(...xs)*0.9,x1=Math.max(...xs)*1.06,y0=Math.min(...ys)*0.94,y1=Math.max(...ys)*1.04;
+  const X=v=>pad.l+iw*(v-x0)/(x1-x0), Y=v=>pad.t+ih-ih*(v-y0)/(y1-y0);
+  let out="";
+  for(let g=0;g<=4;g++){const y=pad.t+ih*g/4,v=y1-(y1-y0)*g/4;
+    out+=`<line x1="${pad.l}" y1="${y}" x2="${pad.l+iw}" y2="${y}" stroke="#EDF0F3"/>`;
+    out+=`<text x="${pad.l-8}" y="${y+4}" text-anchor="end" font-size="10.5" fill="${C.slate}">${v.toFixed(1)}%</text>`;}
+  out+=`<polyline points="${fr.map(f=>`${X(f.volatility*100)},${Y(f.target_return*100)}`).join(" ")}" fill="none" stroke="${C.navy}" stroke-width="2.4"/>`;
+  pts.forEach(p=>{out+=`<circle cx="${X(p.x)}" cy="${Y(p.y)}" r="8" fill="${p.color}" stroke="#fff" stroke-width="2"><title>${esc(p.name)}</title></circle>`;
+    out+=`<text x="${X(p.x)+12}" y="${Y(p.y)+4}" font-size="11" font-weight="600" fill="${C.navy}">${esc(p.name)}</text>`;});
+  out+=`<text x="${pad.l+iw/2}" y="${h-8}" text-anchor="middle" font-size="11" fill="${C.slate}">Volatility (% p.a.)</text>`;
+  return svg(w,h,out);
+}
+
+/* ---------------- tabs ---------------- */
+const TABS=[["overview","Overview"],["portfolio","Portfolio composition"],["deals","Investment trends"],
+            ["valuation","Valuation case studies"],["quant","Quant &amp; AI"],["method","Method &amp; sources"]];
+$("#nav").innerHTML=TABS.map(([id,l],i)=>`<button data-t="${id}" class="${i===0?'active':''}">${l}</button>`).join("");
+$("#nav").addEventListener("click",e=>{const b=e.target.closest("button"); if(!b)return;
+  document.querySelectorAll("nav button").forEach(x=>x.classList.remove("active"));
+  document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+  b.classList.add("active"); $("#t-"+b.dataset.t).classList.add("active");});
+
+/* ---------------- OVERVIEW ---------------- */
+const k=DATA.kpi;
+$("#t-overview").innerHTML=`
+<div class="grid k4">
+ ${[["Assets under management","US$"+fmt(k["AUM (USD bn)"])+"bn","+"+fmt(k["AUM growth YoY (%)"],0)+"% year on year"],
+    ["5-year annualised IRR",fmt(k["5-year annualised IRR (%)"],1)+"%","10-year: "+fmt(k["10-year annualised IRR (%)"],1)+"%"],
+    ["Capital deployed 2025","US$"+fmt(k["Capital deployed (USD bn)"])+"bn","+"+fmt(k["Deployment growth YoY (%)"],0)+"% year on year"],
+    ["Proceeds 2025","US$"+fmt(k["Proceeds (USD bn)"])+"bn","+"+fmt(k["Proceeds growth YoY (%)"],0)+"% year on year"]]
+  .map(([l,v,n])=>`<div class="card kpi"><div class="label">${l}</div><div class="value">${v}</div><div class="note">${n}</div></div>`).join("")}
+</div>
+<div class="grid c2" style="margin-top:16px">
+ <div class="card"><h3>Portfolio by asset class</h3><div class="sub">FY2025 &mdash; officially disclosed weights</div>
+   ${svg(420,250,donut(DATA.allocation,"weight_pct","asset_class",150,125,110,66)+
+     `<text x="150" y="122" text-anchor="middle" font-size="19" font-weight="700" fill="${C.navy}">US$385bn</text>
+      <text x="150" y="140" text-anchor="middle" font-size="11" fill="${C.slate}">total AUM</text>`+
+     DATA.allocation.map((a,i)=>`<rect x="284" y="${52+i*26}" width="11" height="11" rx="3" fill="${PAL[i]}"/>
+      <text x="302" y="${62+i*26}" font-size="11.5" fill="${C.slate}">${esc(a.asset_class)}</text>`).join(""))}
+   <div class="finding"><b>Concentration:</b> the Herfindahl index of this mix is 2,734 &mdash; formally &ldquo;concentrated&rdquo;.
+   The effective number of independent buckets is 3.7, not 5.</div>
+ </div>
+ <div class="card"><h3>Capital deployed versus proceeds</h3><div class="sub">US$ billion &mdash; is the balance sheet self-funding?</div>
+   ${groupedBars(DATA.flows,"year",[{key:"deployments_usd_bn",name:"Deployed",color:C.navy},
+      {key:"proceeds_usd_bn",name:"Proceeds",color:C.gold}],440,255)}
+   <div class="lgd"><span><i style="background:${C.navy}"></i>Capital deployed</span><span><i style="background:${C.gold}"></i>Proceeds</span></div>
+   <div class="finding"><b>Recycling ratio 0.97x in 2025.</b> Realisations funded 97 cents of every dollar deployed,
+   so growth in the book came from performance rather than from new shareholder capital.</div>
+ </div>
+</div>
+<div class="card" style="margin-top:16px"><h3>What this dashboard argues</h3><div class="sub">Five findings, each traceable to a query or a model in this project</div>
+<ol style="margin-left:18px;font-size:13px;line-height:1.85">
+<li><b>The book is concentrated, deliberately.</b> 42% private plus 16% alternatives means 58% of assets are illiquid by design &mdash; the return premium a sovereign with no redemption risk is uniquely able to harvest.</li>
+<li><b>Growth is self-funded.</b> Proceeds of US$38bn against US$39bn deployed. The portfolio pays for its own expansion.</li>
+<li><b>Technology is the strategic spine.</b> Semiconductors, AI infrastructure and AI-enabled healthcare recur across every platform, not just the technology bucket.</li>
+<li><b>The public-equity sleeve is a liquidity choice, not a return choice.</b> Mean-variance optimisation would hold none of it; it exists to fund drawdowns without forced private-asset sales.</li>
+<li><b>Valuation discipline varies by asset.</b> GlobalFoundries trades above our base-case DCF; OMV sits close to fair value with a thinning dividend cushion; WHOOP is priced for a decade of 35% growth.</li>
+</ol></div>`;
+
+/* ---------------- PORTFOLIO ---------------- */
+function agg(rows,key){const m={};rows.forEach(r=>{m[r[key]]=(m[r[key]]||0)+1});
+  return Object.entries(m).map(([k,v])=>({name:k,n:v})).sort((a,b)=>b.n-a.n);}
+function renderPortfolio(){
+  const fS=$("#fSector").value,fR=$("#fRegion").value,fP=$("#fPlatform").value;
+  let rows=DATA.holdings.filter(h=>(fS==="All"||h.sector_name===fS)&&(fR==="All"||h.region===fR)&&(fP==="All"||h.platform_name===fP));
+  $("#pCount").textContent=rows.length;
+  const bySec=agg(rows,"sector_name"), byReg=agg(rows,"region"), byPlat=agg(rows,"platform_name");
+  const aiCol=r=>{const h=rows.find(x=>x.sector_name===r.name); return h&&h.ai_exposure==="High"?C.gold:(h&&h.ai_exposure==="Medium"?C.teal:C.slate);};
+  $("#chSector").innerHTML=hbars(bySec,"name","n",470,32,{labelWidth:200,color:aiCol});
+  $("#chRegion").innerHTML=hbars(byReg,"name","n",470,32,{labelWidth:150,color:()=>C.navy});
+  $("#chPlatform").innerHTML=hbars(byPlat,"name","n",470,32,{labelWidth:210,color:()=>C.teal});
+  $("#tblHold").innerHTML=rows.map(h=>`<tr>
+    <td><b>${esc(h.holding_name)}</b>${h.ticker&&h.ticker!=="-"?` <span class="tag">${esc(h.ticker)}</span>`:""}<div style="color:#5A6B7B;font-size:11.5px;margin-top:3px">${esc(h.investment_thesis)}</div></td>
+    <td>${esc(h.sector_name)}<br><span class="pill ${h.ai_exposure==='High'?'hi':h.ai_exposure==='Medium'?'md':'lo'}">AI ${esc(h.ai_exposure)}</span></td>
+    <td>${esc(h.country)}</td><td>${esc(h.platform_name)}</td>
+    <td>${esc(h.ownership)}</td>
+    <td><span class="pill ${h.evidence_grade==='Official'?'off':'press'}">${esc(h.evidence_grade)}</span></td></tr>`).join("");
+}
+$("#t-portfolio").innerHTML=`
+<div class="filters">
+ <label>Sector</label><select id="fSector"></select>
+ <label>Region</label><select id="fRegion"></select>
+ <label>Platform</label><select id="fPlatform"></select>
+ <span style="margin-left:auto;font-size:12px;color:${C.slate}"><b id="pCount"></b> holdings shown</span>
+</div>
+<div class="grid c3">
+ <div class="card"><h3>By sector</h3><div class="sub">Shaded by AI exposure</div><div id="chSector"></div>
+   <div class="lgd"><span><i style="background:${C.gold}"></i>High</span><span><i style="background:${C.teal}"></i>Medium</span><span><i style="background:${C.slate}"></i>Low</span></div></div>
+ <div class="card"><h3>By region</h3><div class="sub">Where the capital sits</div><div id="chRegion"></div></div>
+ <div class="card"><h3>By platform</h3><div class="sub">Which team owns the relationship</div><div id="chPlatform"></div></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>Tracked holdings</h3>
+ <div class="sub">Twenty named positions assembled from Mubadala disclosures. Evidence grade shown for every row.</div>
+ <div class="scroll"><table><thead><tr><th>Holding &amp; thesis</th><th>Sector</th><th>Country</th><th>Platform</th><th>Ownership</th><th>Evidence</th></tr></thead><tbody id="tblHold"></tbody></table></div>
+ <div class="note"><b>Read this honestly:</b> Mubadala does not publish a line-by-line portfolio with valuations.
+ This table is a curated set of named, publicly disclosed positions &mdash; it is a representative sample, not the whole book.</div></div>`;
+["Sector","Region","Platform"].forEach(f=>{
+  const key={Sector:"sector_name",Region:"region",Platform:"platform_name"}[f];
+  const vals=["All",...[...new Set(DATA.holdings.map(h=>h[key]))].sort()];
+  $("#f"+f).innerHTML=vals.map(v=>`<option>${esc(v)}</option>`).join("");
+  $("#f"+f).addEventListener("change",renderPortfolio);});
+renderPortfolio();
+
+/* ---------------- DEALS ---------------- */
+let sortKey="announce_date",sortDir=-1;
+function renderDeals(){
+  const fy=$("#dYear").value, fs=$("#dSector").value;
+  let rows=DATA.transactions.filter(t=>(fy==="All"||t.year===fy)&&(fs==="All"||t.sector_name===fs));
+  rows=[...rows].sort((a,b)=>{const A=a[sortKey],B=b[sortKey];
+    const na=A===""||A==null, nb=B===""||B==null; if(na&&nb)return 0; if(na)return 1; if(nb)return -1;
+    return (typeof A==="number"?A-B:String(A).localeCompare(String(B)))*sortDir;});
+  const disclosed=rows.filter(r=>r.value_usd_m!=="").reduce((a,b)=>a+Number(b.value_usd_m||0),0);
+  $("#dCount").textContent=rows.length;
+  $("#dValue").textContent="US$"+fmt(disclosed/1000,1)+"bn";
+  const bySec=agg(rows,"sector_name"), byReg=agg(rows,"region");
+  $("#chDealSector").innerHTML=hbars(bySec,"name","n",470,30,{labelWidth:200,color:()=>C.navy});
+  $("#chDealRegion").innerHTML=hbars(byReg,"name","n",470,30,{labelWidth:150,color:()=>C.gold});
+  $("#tblDeals").innerHTML=rows.map(t=>`<tr>
+    <td>${esc(t.announce_date)}</td><td><b>${esc(t.target)}</b></td><td>${esc(t.deal_type)}</td>
+    <td>${esc(t.sector_name)}</td><td>${esc(t.country)}</td><td>${esc(t.platform_name)}</td>
+    <td class="num">${t.value_usd_m===""?'<span class="tag">n/d</span>':fmt(t.value_usd_m)}</td></tr>`).join("");
+}
+$("#t-deals").innerHTML=`
+<div class="filters"><label>Year</label><select id="dYear"></select>
+ <label>Sector</label><select id="dSector"></select>
+ <span style="margin-left:auto;font-size:12px;color:${C.slate}"><b id="dCount"></b> transactions &middot; <b id="dValue"></b> disclosed value</span></div>
+<div class="grid c2">
+ <div class="card"><h3>Transactions by sector</h3><div class="sub">2025&ndash;2026 announcements</div><div id="chDealSector"></div></div>
+ <div class="card"><h3>Transactions by region</h3><div class="sub">Where new money is going</div><div id="chDealRegion"></div></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>Transaction log</h3>
+ <div class="sub">Click any column header to sort. &ldquo;n/d&rdquo; means the value was not disclosed &mdash; we do not estimate it.</div>
+ <div class="scroll"><table><thead><tr>
+  ${[["announce_date","Date"],["target","Target"],["deal_type","Type"],["sector_name","Sector"],
+     ["country","Country"],["platform_name","Platform"],["value_usd_m","Value (US$m)"]]
+    .map(([k,l])=>`<th data-k="${k}">${l}</th>`).join("")}
+ </tr></thead><tbody id="tblDeals"></tbody></table></div>
+ <div class="finding"><b>What the log shows:</b> of nineteen tracked announcements, ten carry no disclosed value.
+ Any &ldquo;total deal value&rdquo; headline built from public sources is therefore a floor, never a total. The dashboard
+ reports the floor and says so.</div></div>`;
+$("#dYear").innerHTML=["All",...[...new Set(DATA.transactions.map(t=>t.year))].sort().reverse()].map(v=>`<option>${v}</option>`).join("");
+$("#dSector").innerHTML=["All",...[...new Set(DATA.transactions.map(t=>t.sector_name))].sort()].map(v=>`<option>${esc(v)}</option>`).join("");
+$("#dYear").addEventListener("change",renderDeals); $("#dSector").addEventListener("change",renderDeals);
+$("#t-deals").addEventListener("click",e=>{const th=e.target.closest("th[data-k]"); if(!th)return;
+  if(sortKey===th.dataset.k)sortDir*=-1; else{sortKey=th.dataset.k;sortDir=1;} renderDeals();});
+renderDeals();
+
+/* ---------------- VALUATION ---------------- */
+const g=DATA.cases.gfs,o=DATA.cases.omv,wh=DATA.cases.whoop,mc=DATA.cases.mcap;
+const gf=g.football_field,of_=o.football_field;
+$("#t-valuation").innerHTML=`
+<div class="grid c2">
+ <div class="card"><h3>1. Technology &mdash; GlobalFoundries (NASDAQ: GFS)</h3>
+  <div class="sub">Mubadala controls c.80%. Five-year FCFF DCF, WACC ${(g.wacc.wacc*100).toFixed(2)}%, terminal growth 2.5%.</div>
+  ${footballField([{name:"DCF range",lo:gf["DCF low (WACC +1.5%, g -1.0%)"],hi:gf["DCF high (WACC -1.5%, g +1.0%)"],mid:gf["DCF base"],color:C.navy},
+                   {name:"Comparables 11.0x&ndash;17.0x EV/EBITDA",lo:gf["Comparables low (11.0x EV/EBITDA)"],hi:gf["Comparables high (17.0x EV/EBITDA)"],mid:gf["Comparables mid (14.5x EV/EBITDA)"],color:C.gold}],
+                  [{name:"market",v:gf["Current market price"],color:C.rust},{name:"consensus",v:gf["Sell-side consensus target"],color:C.teal,dash:"5 4"}],460,190,"$")}
+  <div class="warn"><b>The reverse DCF is the interesting bit.</b> At $50.01 the market requires a steady-state EBIT margin of
+  <b>${(g.reverse_dcf.implied_terminal_ebit_margin*100).toFixed(1)}%</b> against ${(g.reverse_dcf.ttm_ebit_margin*100).toFixed(1)}% today.
+  That is essentially full delivery of management's 2030 gross-margin plan. Buying the shares here is underwriting execution, not valuation.</div></div>
+
+ <div class="card"><h3>2. Energy &mdash; OMV AG (VIE: OMV)</h3>
+  <div class="sub">Mubadala holds 24.9%. WACC ${(o.wacc.wacc*100).toFixed(2)}% using a sector beta of 0.90 in place of the raw 0.21.</div>
+  ${footballField([{name:"DCF range",lo:of_["DCF low (WACC +1.5%, g -1.0%)"],hi:of_["DCF high (WACC -1.5%, g +1.0%)"],mid:of_["DCF base"],color:C.navy},
+                   {name:"Comparables 9.8x&ndash;15.6x normalised P/E",lo:of_["Comparables low (9.8x normalised P/E)"],hi:of_["Comparables high (15.6x normalised P/E)"],mid:of_["Comparables median (12.4x normalised P/E)"],color:C.gold}],
+                  [{name:"market",v:of_["Current market price"],color:C.rust},{name:"consensus",v:of_["Sell-side consensus target"],color:C.teal,dash:"5 4"}],460,190,"&euro;")}
+  <div class="warn"><b>The dividend is the risk, not the valuation.</b> Free-cash-flow cover of the payout has fallen
+  6.0x &rarr; 5.3x &rarr; 2.3x &rarr; 1.9x &rarr; 1.3x while the dividend per share was raised every year.
+  The 8.1% yield is real but the cushion behind it has almost gone.</div></div>
+</div>
+<div class="grid c2" style="margin-top:16px">
+ <div class="card"><h3>3. Healthcare &mdash; WHOOP Inc. (private)</h3>
+  <div class="sub">Series G: US$575m raised at a US$10.1bn post-money, March 2026. Valued by reverse DCF.</div>
+  ${hbars(Object.entries(wh.scenarios).map(([k,v])=>({name:k.split(" - ")[0],v:v.value_usd_m/1000,cagr:v.revenue_cagr})),
+    "name","v",460,44,{labelWidth:60,color:(r,i)=>[C.rust,C.navy,C.teal][i],
+    fmt:r=>`US$${r.v.toFixed(1)}bn &middot; ${(r.cagr*100).toFixed(0)}% CAGR`})}
+  <div class="finding"><b>What the price assumes:</b> revenue compounding at
+  <b>${(wh.reverse_dcf.implied_revenue_cagr*100).toFixed(1)}% a year for a decade</b>, from a US$1.1bn run-rate to about
+  US$${wh.reverse_dcf.implied_revenue_year10_usd_bn}bn by 2035, with free-cash-flow margins reaching 20%.
+  Entry multiple ${wh.implied_entry_multiples.ev_revenue_pre_money}x revenue &mdash; a ${wh.listed_reference_multiples.premium_to_listed_median_x}x premium to listed healthcare platforms.</div></div>
+
+ <div class="card"><h3>4. Financial services &mdash; Mubadala Capital</h3>
+  <div class="sub">c.US$30bn AUM (official). What would the fee franchise be worth if it were listed?</div>
+  ${hbars(Object.entries(mc.valuation_range_usd_bn).map(([k,v])=>({name:k.split(" - ")[0].trim(),v})),
+    "name","v",460,38,{labelWidth:150,color:(r,i)=>[C.slate,C.navy,C.gold,C.teal][i],fmt:r=>`US$${r.v.toFixed(2)}bn`})}
+  <div class="finding"><b>Central estimate US$${mc.central_after_discount_usd_bn.toFixed(2)}bn</b> after a 25% private-company discount.
+  The point is structural: Mubadala Capital converts third-party capital into a fee annuity valued on a multiple of earnings,
+  on top of the return earned on Mubadala's own balance sheet. It is the one part of the group that creates value
+  independently of the direction of asset prices.</div></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>Why these four</h3>
+<div class="sub">Four sectors, four deliberately different valuation problems &mdash; because one method does not fit every asset</div>
+<table><thead><tr><th>Case</th><th>Sector</th><th>Why it is hard</th><th>Method chosen</th></tr></thead><tbody>
+<tr><td><b>GlobalFoundries</b></td><td>Technology</td><td>Cyclical margins, heavy capex, AI optionality not in reported numbers</td><td>FCFF DCF, comparables, reverse DCF to price the optionality</td></tr>
+<tr><td><b>OMV</b></td><td>Energy</td><td>Commodity cycle, non-credible raw beta, large consolidated minorities, distorted reported EPS</td><td>FCFF DCF with sector beta and a full EV bridge; normalised-EPS comparables; dividend-cover test</td></tr>
+<tr><td><b>WHOOP</b></td><td>Healthcare</td><td>Private: no accounts, only a disclosed transaction price</td><td>Reverse DCF &mdash; solve for what the price assumes rather than invent a forecast</td></tr>
+<tr><td><b>Mubadala Capital</b></td><td>Financial services</td><td>Private, and the asset is a fee stream rather than a balance sheet</td><td>Fee-franchise sum-of-the-parts against the listed alternative-manager cohort</td></tr>
+</tbody></table></div>`;
+
+/* ---------------- QUANT ---------------- */
+const po=DATA.optimiser,m=DATA.montecarlo,cl=DATA.classifier;
+const yrs=Array.from({length:m.median_path_usd_bn.length},(_,i)=>2025+i);
+$("#t-quant").innerHTML=`
+<div class="grid c2">
+ <div class="card"><h3>Is the disclosed asset mix efficient?</h3>
+  <div class="sub">Mean-variance optimisation. Capital-market assumptions are the author's; the weights are Mubadala's.</div>
+  ${scatterFrontier(po.efficient_frontier,[
+    {x:po.actual_portfolio.volatility*100,y:po.actual_portfolio.expected_return*100,name:"Actual mix",color:C.gold},
+    {x:po.max_sharpe_portfolio.volatility*100,y:po.max_sharpe_portfolio.expected_return*100,name:"Max Sharpe",color:C.teal},
+    {x:po.min_variance_portfolio.volatility*100,y:po.min_variance_portfolio.expected_return*100,name:"Min variance",color:C.rust}],460,270)}
+  <div class="finding">The published mix sits <b>${po.efficiency_test.excess_volatility_carried_pp}pp</b> of volatility to the right of the frontier
+  at the same expected return. The gap is almost entirely the 20% public-equity sleeve, which a pure return optimiser would not hold at all.
+  That is not a mistake &mdash; it is the price of liquidity, and naming that price is the useful output.</div></div>
+
+ <div class="card"><h3>Ten-year AUM simulation</h3>
+  <div class="sub">50,000 paths, Student-t shocks for fat tails, 10.7% expected return (the disclosed 5-year IRR)</div>
+  ${fanChart(yrs,m.median_path_usd_bn,m.p10_path_usd_bn,m.p90_path_usd_bn,460,270,1000)}
+  <div class="finding">Median 2035 AUM <b>US$${fmt(m.outcome_distribution_usd_bn.median)}bn</b>, with a
+  <b>${(m.probabilities["P(AUM > $1,000bn by 2035)"]*100).toFixed(0)}%</b> probability of crossing US$1 trillion and a
+  ${(m.drawdown["P(peak-to-trough drawdown worse than 20%)"]*100).toFixed(0)}% chance of a peak-to-trough drawdown worse than 20% along the way.</div></div>
+</div>
+<div class="grid c2" style="margin-top:16px">
+ <div class="card"><h3>Reverse optimisation &mdash; what returns does the mix imply?</h3>
+  <div class="sub">If the published weights are optimal, these are the returns the allocator must believe in</div>
+  ${hbars(Object.entries(po.reverse_optimisation.implied_expected_returns).map(([k,v])=>({name:k,v:+(v*100).toFixed(1)})),
+    "name","v",460,34,{labelWidth:170,color:()=>C.navy,fmt:r=>r.v.toFixed(1)+"%"})}
+  <div class="note">This is a cleaner way to interrogate an allocation than arguing about whether it is &ldquo;right&rdquo;.
+  It converts a policy into a set of testable beliefs.</div></div>
+ <div class="card"><h3>Machine-learning sector classifier</h3>
+  <div class="sub">TF-IDF word + character n-grams &rarr; multinomial logistic regression</div>
+  <div class="grid k4" style="margin-bottom:12px">
+   <div><div class="label" style="font-size:10.5px;color:${C.slate};font-weight:700">HOLD-OUT ACCURACY</div>
+     <div style="font-size:26px;font-weight:700;color:${C.navy}">${(cl.holdout_real_headlines.accuracy*100).toFixed(0)}%</div>
+     <div style="font-size:11px;color:${C.teal};font-weight:600">on ${cl.holdout_real_headlines.n} real headlines</div></div>
+   <div><div class="label" style="font-size:10.5px;color:${C.slate};font-weight:700">TRAINING EXAMPLES</div>
+     <div style="font-size:26px;font-weight:700;color:${C.navy}">${fmt(cl.training_corpus.n_examples)}</div>
+     <div style="font-size:11px;color:${C.slate};font-weight:600">synthetic, disclosed</div></div>
+  </div>
+  <div class="scroll" style="max-height:250px"><table><thead><tr><th>Headline</th><th>Predicted</th><th class="num">Conf.</th></tr></thead><tbody>
+  ${cl.holdout_real_headlines.rows.map(r=>`<tr><td style="font-size:11.5px">${esc(r.headline.slice(0,72))}&hellip;</td>
+    <td>${r.correct?"":"<b style='color:"+C.rust+"'>&times;</b> "}${esc(r.predicted)}</td>
+    <td class="num">${r.confidence.toFixed(2)}</td></tr>`).join("")}</tbody></table></div>
+  <div class="warn"><b>The one miss is the instructive one.</b> &ldquo;CoolIT data centre liquid cooling&rdquo; was tagged Industrials,
+  not Technology. A single-label model cannot represent a deal that is genuinely both. The fix is a multi-label data model,
+  not a bigger classifier.</div></div>
+</div>`;
+
+/* ---------------- METHOD ---------------- */
+$("#t-method").innerHTML=`
+<div class="grid c2">
+ <div class="card"><h3>How this was built</h3><div class="sub">Seven stages, each reproducible from the repository</div>
+ <ol style="margin-left:18px;line-height:2;font-size:13px">
+  <li><b>Source collection</b> &mdash; Mubadala's 2025 Annual Review, press releases and corporate site; market data from StockAnalysis / S&amp;P Global.</li>
+  <li><b>Star-schema warehouse</b> &mdash; five dimension and eleven fact tables in SQLite, every row carrying a source ID.</li>
+  <li><b>SQL analysis</b> &mdash; twelve queries using CTEs, window functions, conditional aggregation and a Herfindahl concentration calculation.</li>
+  <li><b>Valuation models</b> &mdash; a shared Python engine plus four case studies, mirrored in a live Excel workbook.</li>
+  <li><b>Quantitative layer</b> &mdash; mean-variance optimisation, reverse optimisation, Monte Carlo, k-means clustering.</li>
+  <li><b>Machine learning</b> &mdash; a text classifier that tags announcements to sectors, tested on unseen real headlines.</li>
+  <li><b>Reporting</b> &mdash; this dashboard, a Power BI build guide, and three written documents.</li>
+ </ol></div>
+ <div class="card"><h3>Evidence grading</h3><div class="sub">Every number in this project carries one of four grades</div>
+ <table><tbody>
+  <tr><td><span class="pill off">Official</span></td><td>Stated by Mubadala or in a company filing. Example: AUM of US$385bn.</td></tr>
+  <tr><td><span class="pill md">Market data</span></td><td>Observable exchange or vendor data. Example: GFS enterprise value of US$25.4bn.</td></tr>
+  <tr><td><span class="pill press">Press reporting</span></td><td>Widely reported, not confirmed by Mubadala. Example: the c.80% GlobalFoundries stake.</td></tr>
+  <tr><td><span class="pill lo">Analyst estimate</span></td><td>Constructed by the author. Example: every forward growth and margin assumption.</td></tr>
+ </tbody></table>
+ <div class="warn"><b>What this project deliberately does not do:</b> invent a valuation for Mubadala's whole portfolio.
+ The group does not disclose position-level values, and a number built by guessing would be worse than no number.
+ Where a value is unknown, this dashboard shows &ldquo;n/d&rdquo;.</div></div>
+</div>
+<div class="card" style="margin-top:16px"><h3>Sources</h3>
+<table><thead><tr><th>ID</th><th>Source</th><th>As of</th><th>Class</th></tr></thead><tbody>
+${[["S01","Mubadala press release &mdash; 2025 annual results","2026-04-09","Official"],
+   ["S02","Mubadala 2025 Annual Review &mdash; Performance Overview","2026-04-09","Official"],
+   ["S03","Mubadala 2025 Annual Review &mdash; Key Investment Highlights","2026-04-09","Official"],
+   ["S04","Mubadala corporate site &mdash; Our Structure","2026-08-04","Official"],
+   ["S05","Mubadala press release &mdash; WHOOP Series G","2026-03-31","Official"],
+   ["S06","Mubadala newsroom &mdash; 2026 transaction announcements","2026-08-04","Official"],
+   ["S07","StockAnalysis / S&amp;P Global &mdash; GlobalFoundries","2026-08-03","Market data"],
+   ["S08","StockAnalysis / S&amp;P Global &mdash; OMV AG","2026-06-30","Market data"],
+   ["S09","StockAnalysis &mdash; listed peer comparison tables","2026-08-04","Market data"],
+   ["S10","Analyst estimate constructed for this project","2026-08-04","Analyst estimate"]]
+  .map(r=>`<tr><td><b>${r[0]}</b></td><td>${r[1]}</td><td>${r[2]}</td><td>${r[3]}</td></tr>`).join("")}
+</tbody></table></div>`;
+</script></body></html>

@@ -1,0 +1,7 @@
+agency,tenor,rating,outlook,source_id
+Moody's,Long-term,Aa2,Stable,S02
+S&P Global,Long-term,AA,Stable,S02
+Fitch,Long-term,AA,Stable,S02
+Moody's,Short-term,P-1,Stable,S02
+S&P Global,Short-term,A-1+,Stable,S02
+Fitch,Short-term,F1+,Stable,S02

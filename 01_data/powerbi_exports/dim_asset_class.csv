@@ -1,0 +1,6 @@
+asset_class_id,asset_class,weight_2025_pct,description,source_id
+1,Private,42.0,Direct private equity and private co-investments,S02
+2,Public,20.0,Listed equities and public market mandates,S02
+3,Real Estate & Infrastructure,17.0,Physical real assets,S02
+4,Alternatives,16.0,"Funds, GP stakes, secondaries, hedge strategies",S02
+5,Credit,5.0,Private and structured credit,S02

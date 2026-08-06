@@ -1,0 +1,13 @@
+geo_id,country,region,currency,market_class
+1,United Arab Emirates,Middle East,AED,Home market
+2,United States,North America,USD,Developed
+3,United Kingdom,Europe,GBP,Developed
+4,Austria,Europe,EUR,Developed
+5,Germany,Europe,EUR,Developed
+6,Brazil,Latin America,BRL,Emerging
+7,Canada,North America,CAD,Developed
+8,Ireland,Europe,EUR,Developed
+9,Spain,Europe,EUR,Developed
+10,India,Asia-Pacific,INR,Emerging
+11,China,Asia-Pacific,CNY,Emerging
+12,Multi-geography,Global,USD,Blended

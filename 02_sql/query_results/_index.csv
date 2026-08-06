@@ -1,0 +1,13 @@
+query,rows,first_columns
+Q1,11,"year, metric, value, source_class"
+Q2,5,"asset_class, weight_pct, implied_usd_bn, cumulative_weight_pct"
+Q3,3,"year, deployments_usd_bn, proceeds_usd_bn, net_deployment_usd_bn"
+Q4,9,"sector_name, strategic_theme, ai_exposure, n_holdings"
+Q5,5,"region, n_holdings, pct, capital_role"
+Q6,4,"platform_name, technology, healthcare, energy"
+Q7,12,"deal_year, sector_name, n_deals, n_with_value"
+Q8,1,"hhi, interpretation, effective_n_buckets"
+Q9,19,"sector_name, ticker, company, mkt_cap_bn"
+Q10,5,"end_market, rev_2023, pct_2023, rev_2025"
+Q11,5,"year, revenue_eur_m, ebitda_eur_m, ebitda_margin_pct"
+Q12,3,"table_name, evidence_grade, n"

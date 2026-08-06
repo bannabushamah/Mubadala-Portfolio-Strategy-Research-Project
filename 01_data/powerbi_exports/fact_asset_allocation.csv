@@ -1,0 +1,6 @@
+year,asset_class_id,asset_class,weight_pct,implied_usd_bn,source_id
+2025,1,Private,42.0,161.7,S02
+2025,2,Public,20.0,77.0,S02
+2025,3,Real Estate & Infrastructure,17.0,65.5,S02
+2025,4,Alternatives,16.0,61.6,S02
+2025,5,Credit,5.0,19.2,S02

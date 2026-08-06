@@ -1,0 +1,10 @@
+sector_name,strategic_theme,ai_exposure,n_holdings,pct_of_holdings
+Financial Services,Compounding / Fee-based,High,4,20.0
+Real Estate & Infrastructure,Yield / Inflation-linked,Low,4,20.0
+Technology,Growth / Disruption,High,4,20.0
+Energy & Sustainability,Transition / Cyclical,Medium,3,15.0
+Aerospace & Defence,Strategic / Sovereign,Medium,1,5.0
+Consumer & Education,Defensive,Low,1,5.0
+Healthcare & Life Sciences,Growth / Defensive,High,1,5.0
+Industrials & Business Services,Cyclical,Medium,1,5.0
+Mobility & Logistics,Cyclical,Low,1,5.0

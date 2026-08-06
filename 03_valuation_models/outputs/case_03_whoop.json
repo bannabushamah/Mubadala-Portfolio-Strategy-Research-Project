@@ -1,0 +1,160 @@
+{
+  "case": "WHOOP Inc. (private)",
+  "sector": "Healthcare & Life Sciences - AI-enabled continuous biometrics",
+  "mubadala_link": "Participating investor in the March 2026 Series G; separate UAE preventative-health partnership announced 2026",
+  "valuation_date": "2026-03-31",
+  "known_facts": {
+    "post_money_usd_m": 10100.0,
+    "round_size_usd_m": 575.0,
+    "pre_money_usd_m": 9525.0,
+    "run_rate_revenue_usd_m": 1100.0,
+    "members_m": 2.5,
+    "bookings_growth_2025_pct": 103.0,
+    "cash_flow_positive_2025": true,
+    "source": "Mubadala press release, 31 March 2026"
+  },
+  "implied_entry_multiples": {
+    "ev_revenue_post_money": 9.18,
+    "ev_revenue_pre_money": 8.66,
+    "revenue_per_member_usd": 440.0
+  },
+  "reverse_dcf": {
+    "method": "Solve for the revenue CAGR that makes a 10-year DCF equal the price actually paid",
+    "assumptions": {
+      "discount_rate": 0.18,
+      "terminal_growth": 0.035,
+      "horizon_years": 10,
+      "terminal_fcf_margin": 0.2,
+      "starting_fcf_margin": 0.04
+    },
+    "implied_revenue_cagr": 0.3482,
+    "implied_revenue_year10_usd_m": 21830.0,
+    "implied_revenue_year10_usd_bn": 21.83,
+    "interpretation": "The Series G price requires revenue to compound at 34.8% a year for a decade, reaching about US$21.8bn by 2035, with free-cash-flow margins reaching 20%. That is demanding but not absurd against 2025 bookings growth of 103%; the question is durability, not direction."
+  },
+  "scenarios": {
+    "Bear - growth fades to 12%, margin caps at 12%": {
+      "revenue_cagr": 0.12,
+      "terminal_fcf_margin": 0.12,
+      "discount_rate": 0.2,
+      "revenue_year10_usd_m": 3416.0,
+      "value_usd_m": 1025.0,
+      "vs_pre_money_pct": -89.2
+    },
+    "Base - reverse-DCF solution": {
+      "revenue_cagr": 0.3482,
+      "terminal_fcf_margin": 0.2,
+      "discount_rate": 0.18,
+      "revenue_year10_usd_m": 21830.0,
+      "value_usd_m": 9525.0,
+      "vs_pre_money_pct": 0.0
+    },
+    "Bull - platform economics, 25% margin": {
+      "revenue_cagr": 0.42,
+      "terminal_fcf_margin": 0.25,
+      "discount_rate": 0.16,
+      "revenue_year10_usd_m": 36667.0,
+      "value_usd_m": 24624.0,
+      "vs_pre_money_pct": 158.5
+    }
+  },
+  "listed_reference_multiples": {
+    "peers": {
+      "Thermo Fisher": {
+        "mkt_cap_bn": 209.27,
+        "rev_bn": 46.34,
+        "price_to_sales": 4.52
+      },
+      "West Pharmaceutical": {
+        "mkt_cap_bn": 24.33,
+        "rev_bn": 3.33,
+        "price_to_sales": 7.31
+      },
+      "Agilent": {
+        "mkt_cap_bn": 39.2,
+        "rev_bn": 7.23,
+        "price_to_sales": 5.42
+      },
+      "ICON plc": {
+        "mkt_cap_bn": 12.08,
+        "rev_bn": 8.29,
+        "price_to_sales": 1.46
+      },
+      "Charles River": {
+        "mkt_cap_bn": 11.32,
+        "rev_bn": 4.03,
+        "price_to_sales": 2.81
+      }
+    },
+    "median_price_to_sales": 4.52,
+    "whoop_price_to_sales_pre_money": 8.66,
+    "premium_to_listed_median_x": 1.92,
+    "note": "WHOOP is priced at a large premium to listed healthcare platforms. That premium is the market paying for growth rate and data-asset optionality, not for current profitability."
+  },
+  "sensitivity_value_usd_bn": {
+    "revenue_cagr_axis": [
+      0.1,
+      0.15,
+      0.2,
+      0.25,
+      0.3,
+      0.35
+    ],
+    "terminal_fcf_margin_axis": [
+      0.12,
+      0.16,
+      0.2,
+      0.24,
+      0.28
+    ],
+    "grid": [
+      [
+        1.07,
+        1.52,
+        2.14,
+        3.02,
+        4.24,
+        5.92
+      ],
+      [
+        1.38,
+        1.96,
+        2.79,
+        3.95,
+        5.56,
+        7.78
+      ],
+      [
+        1.68,
+        2.41,
+        3.43,
+        4.87,
+        6.87,
+        9.64
+      ],
+      [
+        1.99,
+        2.85,
+        4.07,
+        5.79,
+        8.19,
+        11.5
+      ],
+      [
+        2.3,
+        3.3,
+        4.72,
+        6.72,
+        9.51,
+        13.36
+      ]
+    ]
+  },
+  "key_risks": [
+    "Consumer subscription churn is the single biggest swing factor and is not disclosed.",
+    "Hardware refresh cycles create lumpy working capital that a revenue-multiple lens hides.",
+    "Competitive encroachment from Apple, Samsung and Oura on the same wrist.",
+    "Regulatory reclassification of predictive health features as medical devices.",
+    "A 9.2x revenue entry multiple leaves no margin for a growth disappointment."
+  ]
+}

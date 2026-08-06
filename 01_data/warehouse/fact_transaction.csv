@@ -1,0 +1,20 @@
+deal_id,announce_date,target,deal_type,sector_id,geo_id,platform_id,value_usd_m,disclosure_note,evidence_grade,source_id
+1,2025-12-31,Corient tack-on acquisitions,Add-on,4,2,3,,Value not disclosed,Official,S03
+2,2025-12-31,ADIC indirect deployments,Fund deployment,12,12,3,19061.0,AED70bn disclosed,Official,S03
+3,2025-12-31,Al Maryah Island transformation,Development,5,1,4,16338.0,AED60bn+ disclosed,Official,S03
+4,2025-12-31,Tabreed - two largest ever transactions,Acquisition,5,1,1,1054.0,AED3.87bn disclosed,Official,S03
+5,2025-12-31,Fortress strategic partnership,Partnership,4,2,3,1000.0,Seeks to deploy US$1bn,Official,S03
+6,2025-12-31,Nord Anglia Education stake,Minority acquisition,7,3,2,600.0,US$600m disclosed,Official,S03
+7,2025-12-31,Mubadala Capital Co-Investment Fund I close,Fund close,4,12,3,550.0,US$550m+ disclosed,Official,S03
+8,2025-12-31,Barings Global Real Estate Debt Partnership,Credit partnership,5,12,3,500.0,US$500m disclosed,Official,S03
+9,2026-03-31,WHOOP Series G,Growth equity,2,2,2,575.0,Round size US$575m at US$10.1bn valuation,Official,S05
+10,2026-06-15,Mubadala x WHOOP UAE partnership,Partnership,2,1,1,,Value not disclosed,Official,S06
+11,2026-05-20,CredibleX Series A (lead investor),Venture,4,1,1,,Value not disclosed,Official,S06
+12,2026-05-05,Power Factors minority stake,Minority acquisition,1,7,2,,Value not disclosed,Official,S06
+13,2026-04-20,Container leasing platforms with Stonepeak,Platform investment,10,2,4,,Value not disclosed,Official,S06
+14,2026-04-10,TBX Nexxia JV with Tubacex,Joint venture,6,1,1,,Value not disclosed,Official,S06
+15,2026-03-15,"Aldar/Mubadala JV acquires The Link, Masdar City",Real estate acquisition,5,1,4,,Value not disclosed,Official,S06
+16,2026-02-25,CoolIT minority stake sale to Ecolab (KKR-led),Exit,1,7,2,4750.0,US$4.75bn total transaction value,Official,S06
+17,2026-07-20,Embraer aerospace agreement,Strategic agreement,8,6,1,,Value not disclosed,Official,S06
+18,2026-07-05,Greenlink investment with Equitix,Infrastructure,5,8,4,,Value not disclosed,Official,S06
+19,2026-06-30,Hornsea 3 offshore wind (Apollo-led consortium),Infrastructure,3,3,4,,Value not disclosed,Official,S06

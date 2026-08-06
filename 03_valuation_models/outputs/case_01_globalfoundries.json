@@ -1,0 +1,279 @@
+{
+  "case": "GlobalFoundries Inc. (NASDAQ: GFS)",
+  "sector": "Technology - specialty semiconductor foundry",
+  "mubadala_link": "Controlling shareholder (~80%) via Mubadala Technology Investment Company",
+  "valuation_date": "2026-08-04",
+  "market": {
+    "price": 50.01,
+    "shares_m": 548.7,
+    "market_cap_usd_m": 27440.0,
+    "enterprise_value_usd_m": 25400.0,
+    "net_cash_usd_m": 2040.0,
+    "revenue_ttm_usd_m": 6840.0,
+    "ebitda_ttm_usd_m": 2100.0,
+    "ev_ebitda_market": 12.1
+  },
+  "wacc": {
+    "risk_free": 0.0425,
+    "beta_used": 1.76,
+    "equity_risk_premium": 0.05,
+    "extra_equity_premium": 0.0,
+    "cost_of_equity": 0.1305,
+    "cost_of_debt_pretax": 0.055,
+    "tax_rate": 0.15,
+    "cost_of_debt_after_tax": 0.04675,
+    "weight_equity": 0.9408860238650391,
+    "weight_debt": 0.059113976134960944,
+    "wacc": 0.12554920449869703
+  },
+  "assumptions": {
+    "base_revenue": 6840.0,
+    "revenue_growth": [
+      0.08,
+      0.1,
+      0.1,
+      0.07,
+      0.05
+    ],
+    "ebit_margin": [
+      0.13,
+      0.15,
+      0.17,
+      0.19,
+      0.2
+    ],
+    "da_pct_revenue": [
+      0.17,
+      0.165,
+      0.16,
+      0.155,
+      0.15
+    ],
+    "capex_pct_revenue": [
+      0.13,
+      0.135,
+      0.135,
+      0.13,
+      0.125
+    ],
+    "nwc_pct_delta_revenue": 0.02,
+    "tax_rate": 0.15,
+    "terminal_growth": 0.025
+  },
+  "fcff_schedule": [
+    {
+      "year": 1,
+      "revenue": 7387.200000000001,
+      "growth": 0.08,
+      "ebit": 960.3360000000001,
+      "ebit_margin": 0.13,
+      "nopat": 816.2856,
+      "da": 1255.8240000000003,
+      "capex": 960.3360000000001,
+      "delta_nwc": 10.944000000000015,
+      "fcff": 1100.8296,
+      "discount_factor": 0.9425995982735629,
+      "pv_fcff": 1037.641538727647
+    },
+    {
+      "year": 2,
+      "revenue": 8125.920000000002,
+      "growth": 0.1,
+      "ebit": 1218.8880000000001,
+      "ebit_margin": 0.15,
+      "nopat": 1036.0548000000001,
+      "da": 1340.7768000000003,
+      "capex": 1096.9992000000004,
+      "delta_nwc": 14.774400000000023,
+      "fcff": 1265.058,
+      "discount_factor": 0.8374940899809533,
+      "pv_fcff": 1059.4785984831249
+    },
+    {
+      "year": 3,
+      "revenue": 8938.512000000002,
+      "growth": 0.1,
+      "ebit": 1519.5470400000006,
+      "ebit_margin": 0.17,
+      "nopat": 1291.6149840000005,
+      "da": 1430.1619200000005,
+      "capex": 1206.6991200000004,
+      "delta_nwc": 16.251840000000012,
+      "fcff": 1498.8259440000008,
+      "discount_factor": 0.7441084762158625,
+      "pv_fcff": 1115.2890893026422
+    },
+    {
+      "year": 4,
+      "revenue": 9564.207840000003,
+      "growth": 0.07,
+      "ebit": 1817.1994896000006,
+      "ebit_margin": 0.19,
+      "nopat": 1544.6195661600004,
+      "da": 1482.4522152000004,
+      "capex": 1243.3470192000004,
+      "delta_nwc": 12.513916800000006,
+      "fcff": 1771.2108453600003,
+      "discount_factor": 0.6611359184503444,
+      "pv_fcff": 1171.0111090162948
+    },
+    {
+      "year": 5,
+      "revenue": 10042.418232000004,
+      "growth": 0.05,
+      "ebit": 2008.483646400001,
+      "ebit_margin": 0.2,
+      "nopat": 1707.2110994400007,
+      "da": 1506.3627348000005,
+      "capex": 1255.3022790000005,
+      "delta_nwc": 9.564207840000018,
+      "fcff": 1948.7073474000003,
+      "discount_factor": 0.5874152984898662,
+      "pv_fcff": 1144.7005081423665
+    }
+  ],
+  "dcf": {
+    "pv_explicit": 5528.120843672075,
+    "terminal_value": 19874.87593119403,
+    "pv_terminal": 11674.806177571398,
+    "enterprise_value": 17202.92702124347,
+    "terminal_pct_of_ev": 0.6786523109209536
+  },
+  "equity_bridge": {
+    "enterprise_value": 17202.92702124347,
+    "less_net_debt": 2040.0,
+    "less_minorities": -0.0,
+    "plus_associates": 0.0,
+    "equity_value": 19242.92702124347,
+    "shares": 548.7,
+    "value_per_share": 35.07003284352737
+  },
+  "dcf_value_per_share": 35.07,
+  "dcf_upside_pct": -29.9,
+  "sensitivity": {
+    "wacc_axis": [
+      0.1105,
+      0.118,
+      0.1255,
+      0.133,
+      0.1405
+    ],
+    "growth_axis": [
+      0.015,
+      0.02,
+      0.025,
+      0.03,
+      0.035
+    ],
+    "values": [
+      [
+        37.7,
+        35.15,
+        32.96,
+        31.04,
+        29.36
+      ],
+      [
+        39.12,
+        36.34,
+        33.96,
+        31.9,
+        30.1
+      ],
+      [
+        40.71,
+        37.66,
+        35.07,
+        32.84,
+        30.9
+      ],
+      [
+        42.5,
+        39.13,
+        36.29,
+        33.87,
+        31.78
+      ],
+      [
+        44.53,
+        40.78,
+        37.65,
+        35.01,
+        32.74
+      ]
+    ]
+  },
+  "comparables": {
+    "ev_ebitda_set": {
+      "UMC": 14.53,
+      "TSEM": 90.77
+    },
+    "ev_ebitda_stats": {
+      "n": 2,
+      "min": 14.53,
+      "q1": 33.589999999999996,
+      "median": 52.65,
+      "mean": 52.65,
+      "q3": 71.71,
+      "max": 90.77,
+      "kept": [
+        "UMC",
+        "TSEM"
+      ],
+      "dropped_as_outliers": []
+    },
+    "pe_set": {
+      "UMC": 17.4,
+      "TSM": 26.56,
+      "ON": 51.93,
+      "TSEM": 92.65
+    },
+    "pe_stats": {
+      "n": 3,
+      "min": 17.4,
+      "q1": 21.979999999999997,
+      "median": 26.56,
+      "mean": 31.963333333333328,
+      "q3": 39.245,
+      "max": 51.93,
+      "kept": [
+        "UMC",
+        "TSM",
+        "ON"
+      ],
+      "dropped_as_outliers": []
+    },
+    "excluded_from_applied_range": [
+      "TSEM"
+    ],
+    "exclusion_rationale": "Tower Semiconductor trades on 90.8x EV/EBITDA after a +425% 12-month re-rating; including it would distort the central tendency of the peer group.",
+    "applied_ev_ebitda_range": {
+      "low": 11.0,
+      "mid": 14.5,
+      "high": 17.0
+    },
+    "implied_value_per_share": {
+      "low": 45.82,
+      "mid": 59.21,
+      "high": 68.78
+    },
+    "implied_upside_pct_mid": 18.4
+  },
+  "reverse_dcf": {
+    "question": "What steady-state EBIT margin does the current $50.01 share price require?",
+    "implied_terminal_ebit_margin": 0.3338,
+    "base_case_terminal_ebit_margin": 0.2,
+    "ttm_ebit_margin": 0.1208,
+    "interpretation": "The market is underwriting a structurally higher through-cycle margin than our base case, consistent with capitalising silicon-photonics, quantum and automotive content that is not yet in the reported numbers."
+  },
+  "football_field": {
+    "DCF base": 35.07,
+    "DCF low (WACC +1.5%, g -1.0%)": 29.36,
+    "DCF high (WACC -1.5%, g +1.0%)": 44.53,
+    "Comparables low (11.0x EV/EBITDA)": 45.82,
+    "Comparables mid (14.5x EV/EBITDA)": 59.21,
+    "Comparables high (17.0x EV/EBITDA)": 68.78,
+    "Current market price": 50.01,
+    "Sell-side consensus target": 80.24
+  }
+}

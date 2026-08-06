@@ -1,0 +1,6 @@
+year,revenue_eur_m,ebitda_eur_m,ebitda_margin_pct,free_cash_flow_eur_m,dps_eur,fcf_dividend_cover_x,cover_flag
+2021,34897.0,8275.0,23.7,4520.0,2.3,6.03,Covered
+2022,60635.0,13958.0,23.0,4815.0,2.8,5.27,Covered
+2023,38538.0,7057.0,18.3,2222.0,2.95,2.31,Covered
+2024,25504.0,6789.0,26.6,1943.0,3.05,1.95,Covered
+2025,23623.0,5433.0,23.0,1366.0,3.15,1.33,Covered

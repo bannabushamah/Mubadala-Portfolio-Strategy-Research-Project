@@ -1,0 +1,295 @@
+{
+  "question": "Which listed companies does the market actually price like GlobalFoundries and OMV?",
+  "features_used": [
+    "log_mkt_cap",
+    "log_revenue",
+    "log_pe",
+    "ps_ratio"
+  ],
+  "n_companies": 19,
+  "silhouette_by_k": {
+    "2": 0.40060652097093047,
+    "3": 0.3733164021324255,
+    "4": 0.3001024753808956,
+    "5": 0.29283120426859666
+  },
+  "chosen_k": 2,
+  "pca_explained_variance": [
+    0.597,
+    0.288
+  ],
+  "cluster_profiles": [
+    {
+      "cluster": 0,
+      "n": 13,
+      "members": [
+        "GFS",
+        "UMC",
+        "TSEM",
+        "ON",
+        "OMV",
+        "BX",
+        "APO",
+        "ARES",
+        "OWL",
+        "TPG",
+        "WST",
+        "ICLR",
+        "A"
+      ],
+      "median_mkt_cap_bn": 27.4,
+      "median_pe": 51.9,
+      "median_ps": 5.42
+    },
+    {
+      "cluster": 1,
+      "n": 6,
+      "members": [
+        "TSM",
+        "SHEL",
+        "TTE",
+        "E",
+        "BP",
+        "TMO"
+      ],
+      "median_mkt_cap_bn": 202.4,
+      "median_pe": 17.3,
+      "median_ps": 0.93
+    }
+  ],
+  "assignments": [
+    {
+      "ticker": "GFS",
+      "company": "GlobalFoundries Inc.",
+      "cluster": 0,
+      "pe": 36.0,
+      "ps": 4.01,
+      "mkt_cap_bn": 27.44,
+      "pc1": -0.619,
+      "pc2": -0.487
+    },
+    {
+      "ticker": "UMC",
+      "company": "United Microelectronics",
+      "cluster": 0,
+      "pe": 17.4,
+      "ps": 5.79,
+      "mkt_cap_bn": 45.65,
+      "pc1": -0.019,
+      "pc2": 0.081
+    },
+    {
+      "ticker": "TSEM",
+      "company": "Tower Semiconductor",
+      "cluster": 0,
+      "pe": 92.7,
+      "ps": 15.45,
+      "mkt_cap_bn": 26.42,
+      "pc1": -2.333,
+      "pc2": 1.929
+    },
+    {
+      "ticker": "TSM",
+      "company": "TSMC",
+      "cluster": 1,
+      "pe": 26.6,
+      "ps": 13.25,
+      "mkt_cap_bn": 1850.0,
+      "pc1": 2.053,
+      "pc2": 2.9
+    },
+    {
+      "ticker": "ON",
+      "company": "ON Semiconductor",
+      "cluster": 0,
+      "pe": 51.9,
+      "ps": 5.09,
+      "mkt_cap_bn": 31.58,
+      "pc1": -0.866,
+      "pc2": -0.205
+    },
+    {
+      "ticker": "OMV",
+      "company": "OMV Aktiengesellschaft",
+      "cluster": 0,
+      "pe": 16.7,
+      "ps": 0.75,
+      "mkt_cap_bn": 17.62,
+      "pc1": 0.285,
+      "pc2": -1.409
+    },
+    {
+      "ticker": "SHEL",
+      "company": "Shell plc",
+      "cluster": 1,
+      "pe": 9.8,
+      "ps": 0.86,
+      "mkt_cap_bn": 254.3,
+      "pc1": 2.73,
+      "pc2": -0.482
+    },
+    {
+      "ticker": "TTE",
+      "company": "TotalEnergies SE",
+      "cluster": 1,
+      "pe": 11.0,
+      "ps": 1.0,
+      "mkt_cap_bn": 195.47,
+      "pc1": 2.384,
+      "pc2": -0.533
+    },
+    {
+      "ticker": "E",
+      "company": "Eni S.p.A.",
+      "cluster": 1,
+      "pe": 13.8,
+      "ps": 0.77,
+      "mkt_cap_bn": 79.46,
+      "pc1": 1.621,
+      "pc2": -0.898
+    },
+    {
+      "ticker": "BP",
+      "company": "BP p.l.c.",
+      "cluster": 1,
+      "pe": 20.9,
+      "ps": 0.53,
+      "mkt_cap_bn": 114.52,
+      "pc1": 1.841,
+      "pc2": -0.855
+    },
+    {
+      "ticker": "BX",
+      "company": "Blackstone Inc.",
+      "cluster": 0,
+      "pe": 30.5,
+      "ps": 10.95,
+      "mkt_cap_bn": 169.49,
+      "pc1": 0.209,
+      "pc2": 1.614
+    },
+    {
+      "ticker": "APO",
+      "company": "Apollo Global Management",
+      "cluster": 0,
+      "pe": 81.9,
+      "ps": 2.11,
+      "mkt_cap_bn": 75.06,
+      "pc1": 0.084,
+      "pc2": -0.593
+    },
+    {
+      "ticker": "ARES",
+      "company": "Ares Management",
+      "cluster": 0,
+      "pe": 62.4,
+      "ps": 7.77,
+      "mkt_cap_bn": 46.56,
+      "pc1": -0.962,
+      "pc2": 0.501
+    },
+    {
+      "ticker": "OWL",
+      "company": "Blue Owl Capital",
+      "cluster": 0,
+      "pe": 95.9,
+      "ps": 5.95,
+      "mkt_cap_bn": 17.8,
+      "pc1": -1.797,
+      "pc2": -0.216
+    },
+    {
+      "ticker": "TPG",
+      "company": "TPG Inc.",
+      "cluster": 0,
+      "pe": 139.0,
+      "ps": 5.02,
+      "mkt_cap_bn": 18.74,
+      "pc1": -1.854,
+      "pc2": -0.405
+    },
+    {
+      "ticker": "TMO",
+      "company": "Thermo Fisher Scientific",
+      "cluster": 1,
+      "pe": 30.9,
+      "ps": 4.52,
+      "mkt_cap_bn": 209.27,
+      "pc1": 1.064,
+      "pc2": 0.305
+    },
+    {
+      "ticker": "WST",
+      "company": "West Pharmaceutical Services",
+      "cluster": 0,
+      "pe": 44.3,
+      "ps": 7.31,
+      "mkt_cap_bn": 24.33,
+      "pc1": -1.247,
+      "pc2": 0.187
+    },
+    {
+      "ticker": "ICLR",
+      "company": "ICON plc",
+      "cluster": 0,
+      "pe": 434.3,
+      "ps": 1.46,
+      "mkt_cap_bn": 12.08,
+      "pc1": -2.2,
+      "pc2": -1.378
+    },
+    {
+      "ticker": "A",
+      "company": "Agilent Technologies",
+      "cluster": 0,
+      "pe": 28.1,
+      "ps": 5.42,
+      "mkt_cap_bn": 39.2,
+      "pc1": -0.375,
+      "pc2": -0.056
+    }
+  ],
+  "nearest_neighbours": {
+    "GFS": [
+      {
+        "ticker": "ON",
+        "company": "ON Semiconductor",
+        "distance": 0.487,
+        "same_industry_label": true
+      },
+      {
+        "ticker": "A",
+        "company": "Agilent Technologies",
+        "distance": 0.52,
+        "same_industry_label": false
+      },
+      {
+        "ticker": "WST",
+        "company": "West Pharmaceutical Services",
+        "distance": 0.935,
+        "same_industry_label": false
+      }
+    ],
+    "OMV": [
+      {
+        "ticker": "GFS",
+        "company": "GlobalFoundries Inc.",
+        "distance": 1.414,
+        "same_industry_label": false
+      },
+      {
+        "ticker": "E",
+        "company": "Eni S.p.A.",
+        "distance": 1.563,
+        "same_industry_label": true
+      },
+      {
+        "ticker": "A",
+        "company": "Agilent Technologies",
+        "distance": 1.584,
+        "same_industry_label": false
+      }
+    ]
+  },
+  "reading": "Clustering on size and valuation characteristics rather than industry labels is a check on comparables selection. Where a company's nearest neighbours come from a different industry, the analyst should ask whether the chosen peer set reflects how the market really prices the business."
+}

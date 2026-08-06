@@ -1,0 +1,301 @@
+{
+  "purpose": "Automatically tag free-text investment announcements to a sector so portfolio dashboards stay current without manual coding.",
+  "model": "TF-IDF word (1-2 gram) + character (3-5 gram) union -> multinomial logistic regression, class-weighted",
+  "training_corpus": {
+    "n_examples": 1080,
+    "per_class": 180,
+    "generation": "Synthetic, sampled from sector vocabulary pools derived from real Mubadala announcement language.",
+    "why_synthetic": "A 48-example hand-written corpus achieved 6% cross-validated accuracy because examples shared almost no vocabulary. Documented in the project notes as a real failure and fix."
+  },
+  "classes": [
+    "Energy",
+    "Financial Services",
+    "Healthcare",
+    "Industrials & Consumer",
+    "Real Estate & Infrastructure",
+    "Technology"
+  ],
+  "cross_validated_accuracy": 1.0,
+  "classification_report": {
+    "Energy": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 180.0
+    },
+    "Financial Services": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 180.0
+    },
+    "Healthcare": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 180.0
+    },
+    "Industrials & Consumer": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 180.0
+    },
+    "Real Estate & Infrastructure": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 180.0
+    },
+    "Technology": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 180.0
+    },
+    "accuracy": 1.0,
+    "macro avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1080.0
+    },
+    "weighted avg": {
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1-score": 1.0,
+      "support": 1080.0
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "Energy",
+      "Financial Services",
+      "Healthcare",
+      "Industrials & Consumer",
+      "Real Estate & Infrastructure",
+      "Technology"
+    ],
+    "matrix": [
+      [
+        180,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        180,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        180,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        180,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        180,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        180
+      ]
+    ]
+  },
+  "most_informative_terms": {
+    "Energy": [
+      "acquisition stake",
+      "build",
+      "partnership build",
+      "develop",
+      "venture develop",
+      "strategic shareholding",
+      "shareholding",
+      "consortium investment",
+      "consortium",
+      "development company"
+    ],
+    "Financial Services": [
+      "strategic partnership",
+      "vehicle",
+      "series round",
+      "manager",
+      "majority",
+      "majority stake",
+      "close",
+      "consolidator",
+      "insurance",
+      "investment vehicle"
+    ],
+    "Healthcare": [
+      "minority acquisition",
+      "manufacturer",
+      "services business",
+      "growth financing",
+      "hospital",
+      "strategic investment",
+      "research capability",
+      "network",
+      "patient",
+      "services"
+    ],
+    "Industrials & Consumer": [
+      "buyout",
+      "agreement",
+      "expansion",
+      "minority stake",
+      "strategic agreement",
+      "group",
+      "operation",
+      "business services",
+      "minority",
+      "capability"
+    ],
+    "Real Estate & Infrastructure": [
+      "estate",
+      "partnership invest",
+      "invest",
+      "scheme",
+      "venture acquire",
+      "acquire",
+      "development",
+      "terminal",
+      "office",
+      "campus"
+    ],
+    "Technology": [
+      "manufacturing platform",
+      "acquisition minority",
+      "series financing",
+      "solutions",
+      "solutions business",
+      "technology company",
+      "technology",
+      "engineering business",
+      "infrastructure",
+      "infrastructure provider"
+    ]
+  },
+  "holdout_real_headlines": {
+    "n": 12,
+    "accuracy": 0.9167,
+    "rows": [
+      {
+        "headline": "Mubadala Invests in Hornsea 3 Offshore Wind Farm Alongside Consortium Led by Apollo Funds",
+        "true": "Energy",
+        "predicted": "Energy",
+        "confidence": 0.883,
+        "correct": true
+      },
+      {
+        "headline": "CredibleX announces Series A round with Mubadala as lead investor to accelerate SME financing in the UAE",
+        "true": "Financial Services",
+        "predicted": "Financial Services",
+        "confidence": 0.92,
+        "correct": true
+      },
+      {
+        "headline": "Mubadala Partners with WHOOP to Strengthen Preventative Health and Research Capabilities in the UAE",
+        "true": "Healthcare",
+        "predicted": "Healthcare",
+        "confidence": 0.859,
+        "correct": true
+      },
+      {
+        "headline": "Mubadala Announces Acquisition of Minority Stake in Power Factors renewable performance software",
+        "true": "Technology",
+        "predicted": "Technology",
+        "confidence": 0.437,
+        "correct": true
+      },
+      {
+        "headline": "Aldar and Mubadala JV acquires The Link at Masdar City commercial real estate development",
+        "true": "Real Estate & Infrastructure",
+        "predicted": "Real Estate & Infrastructure",
+        "confidence": 0.984,
+        "correct": true
+      },
+      {
+        "headline": "Embraer and Mubadala sign an agreement to strengthen the UAE's position in global aerospace",
+        "true": "Industrials & Consumer",
+        "predicted": "Industrials & Consumer",
+        "confidence": 0.952,
+        "correct": true
+      },
+      {
+        "headline": "Mubadala Partners with Stonepeak to Invest in Container Leasing Platforms Supporting Global Trade",
+        "true": "Real Estate & Infrastructure",
+        "predicted": "Real Estate & Infrastructure",
+        "confidence": 0.914,
+        "correct": true
+      },
+      {
+        "headline": "Mubadala Agrees to Sell Minority Stake in CoolIT data centre liquid cooling to Ecolab in KKR-led transaction",
+        "true": "Technology",
+        "predicted": "Industrials & Consumer",
+        "confidence": 0.452,
+        "correct": false
+      },
+      {
+        "headline": "Mubadala and Tubacex launch TBX Nexxia activating a corrosion resistant alloy platform for energy supply chains",
+        "true": "Energy",
+        "predicted": "Energy",
+        "confidence": 0.688,
+        "correct": true
+      },
+      {
+        "headline": "Mubadala Capital Co-Investment Fund I holds first close above US$550 million",
+        "true": "Financial Services",
+        "predicted": "Financial Services",
+        "confidence": 0.888,
+        "correct": true
+      },
+      {
+        "headline": "Mubadala acquires a stake in Nord Anglia Education international schools platform",
+        "true": "Industrials & Consumer",
+        "predicted": "Industrials & Consumer",
+        "confidence": 0.612,
+        "correct": true
+      },
+      {
+        "headline": "Mubadala Partners with Equitix to Invest in Greenlink electricity interconnector",
+        "true": "Energy",
+        "predicted": "Energy",
+        "confidence": 0.793,
+        "correct": true
+      }
+    ],
+    "note": "These twelve headlines are real Mubadala announcements from 2025-26. None appears in the training corpus."
+  },
+  "limitations": [
+    "Cross-validated accuracy on synthetic data measures internal consistency, not real-world skill. The hold-out score is the honest number.",
+    "Hybrid deals (renewable-energy software, health fintech, data-centre real estate) are genuinely ambiguous - a single label is the wrong data model for them.",
+    "A bag-of-words model has no sense of word order or negation; sentence embeddings from a transformer would handle nuance better.",
+    "The classifier cannot recognise a sector it has never been trained on: it will always force a prediction into an existing class."
+  ]
+}

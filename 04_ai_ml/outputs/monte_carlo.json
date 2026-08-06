@@ -1,0 +1,78 @@
+{
+  "question": "What range of AUM outcomes should Mubadala plan for over 2026-2035?",
+  "inputs": {
+    "starting_aum_usd_bn": 385.0,
+    "expected_return": 0.107,
+    "volatility_ASSUMPTION": 0.125,
+    "annual_net_flow_usd_bn": 1.0,
+    "years": 10,
+    "paths": 50000,
+    "distribution": "Student-t with 5 degrees of freedom, variance-rescaled",
+    "note": "Return is the officially disclosed 5-year IRR. Volatility is an author assumption."
+  },
+  "outcome_distribution_usd_bn": {
+    "p5": 558.9,
+    "p10": 646.4,
+    "p25": 819.4,
+    "median": 1057.9,
+    "mean": 1142.2,
+    "p75": 1360.2,
+    "p90": 1732.7,
+    "p95": 2003.5
+  },
+  "probabilities": {
+    "P(AUM > $500bn by 2035)": 0.9721,
+    "P(AUM > $750bn by 2035)": 0.8178,
+    "P(AUM > $1,000bn by 2035)": 0.5583,
+    "P(AUM below today's $385bn in 2035)": 0.0066
+  },
+  "implied_cagr": {
+    "p5": 0.038,
+    "median": 0.1064,
+    "p95": 0.1793
+  },
+  "drawdown": {
+    "median_max_drawdown": -0.0741,
+    "p5_max_drawdown": -0.2793,
+    "P(peak-to-trough drawdown worse than 20%)": 0.1293
+  },
+  "median_path_usd_bn": [
+    385.0,
+    426.1,
+    471.7,
+    522.2,
+    577.9,
+    639.2,
+    706.8,
+    780.2,
+    862.4,
+    955.1,
+    1057.9
+  ],
+  "p10_path_usd_bn": [
+    385.0,
+    369.3,
+    382.0,
+    402.4,
+    426.3,
+    453.8,
+    485.5,
+    520.5,
+    558.8,
+    602.2,
+    646.4
+  ],
+  "p90_path_usd_bn": [
+    385.0,
+    491.7,
+    582.6,
+    680.1,
+    784.4,
+    903.3,
+    1030.6,
+    1179.3,
+    1343.4,
+    1521.4,
+    1732.7
+  ]
+}

@@ -1,0 +1,13 @@
+sector_id,sector_name,strategic_theme,ai_exposure
+1,Technology,Growth / Disruption,High
+2,Healthcare & Life Sciences,Growth / Defensive,High
+3,Energy & Sustainability,Transition / Cyclical,Medium
+4,Financial Services,Compounding / Fee-based,High
+5,Real Estate & Infrastructure,Yield / Inflation-linked,Low
+6,Industrials & Business Services,Cyclical,Medium
+7,Consumer & Education,Defensive,Low
+8,Aerospace & Defence,Strategic / Sovereign,Medium
+9,Metals & Mining,Cyclical / Strategic,Low
+10,Mobility & Logistics,Cyclical,Low
+11,Telecom & Space,Strategic / Sovereign,Medium
+12,Multi-sector,Diversified,n/a
