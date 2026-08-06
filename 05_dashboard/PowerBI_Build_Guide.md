@@ -1,29 +1,9 @@
-# Power BI Build Guide
-### Mubadala Portfolio Strategy report — rebuild in 45 minutes
+# My Power BI Build Guide
+### Mubadala Portfolio Strategy report
 
-This guide reproduces the interactive dashboard in Power BI Desktop. It exists because
-Power BI Desktop is Windows-only, and this project was built on a Mac. The HTML dashboard
-in this folder is the Mac-native twin: **same data model, same measures, same visuals.**
-
-If you are asked in an interview "did you actually build the Power BI report?", the honest
-answer is the one to give: *"I built the data model and wrote the DAX; I shipped a
-browser dashboard because I work on a Mac, and here is the exact build guide so it can be
-reproduced in Power BI in under an hour."* That answer is stronger than a vague yes.
-
----
-
-## 0. Before you start
-
-| You need | Where to get it | Cost |
-|---|---|---|
-| Power BI Desktop | Microsoft Store, or `powerbi.microsoft.com/desktop` | Free |
-| A Windows PC or VM | Parallels / UTM / Boot Camp / a university lab machine | — |
-| The CSVs | `01_data/powerbi_exports/` in this project | Included |
-
-> **On a Mac with no Windows?** Sign up for a free Microsoft Fabric trial and use the
-> **Power BI Service** in the browser. You lose some modelling features but you can build
-> reports from the same CSVs. Alternatively use Tableau Public (free, Mac-native) — the
-> data model below transfers directly.
+I built the data model and wrote the DAX; I shipped a
+browser dashboard since I work on a Mac, and here is my exact build guide so it can be
+done in Power BI.
 
 ---
 
