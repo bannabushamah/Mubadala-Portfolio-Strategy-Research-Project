@@ -1,0 +1,92 @@
+====================================================================================================
+VERIFICATION PASS
+====================================================================================================
+
+1. SOURCE DATA INTEGRITY
+  [PASS] AUM 2025 (USD bn)                                          got=385.0  expect=385.0
+  [PASS] AUM 2025 (AED bn)                                          got=1414.0  expect=1414.0
+  [PASS] AED/USD implied                                            got=3.673  expect=3.673
+  [PASS] 5-year IRR (%)                                             got=10.7  expect=10.7
+  [PASS] Deployed 2025 (USD bn)                                     got=39.0  expect=39.0
+  [PASS] Asset-class weights sum to 100%                            got=100.0  expect=100.0
+  [PASS] Private + Alternatives (illiquid %)                        got=58.0  expect=58.0
+
+2. DATABASE
+  [PASS] Foreign-key violations                                     got=0  expect=0
+  [PASS] Tables in database                                         got=16  expect=16
+  [PASS] Herfindahl index                                           got=2734.0  expect=2734.0
+  [PASS] Effective number of buckets                                got=3.66  expect=3.66
+  [PASS] Transactions logged                                        got=19  expect=19
+  [PASS] Transactions with a disclosed value                        got=9  expect=9
+  [PASS] Transactions with NO disclosed value                       got=10  expect=10
+  [PASS] Disclosed deal value (USD bn)                              got=44.4  expect=44.4
+  [PASS] Holdings tracked                                           got=20  expect=20
+  [PASS] Holdings officially sourced                                got=16  expect=16
+  [PASS] 2025 recycling ratio                                       got=0.974  expect=0.974
+
+3. VALUATION MODELS
+  [PASS] GFS WACC (%)                                               got=12.55  expect=12.55
+  [PASS] GFS DCF value/share ($)                                    got=35.07  expect=35.07
+  [PASS] GFS market price ($)                                       got=50.01  expect=50.01
+  [PASS] GFS reverse-DCF implied EBIT margin (%)                    got=33.4  expect=33.4
+  [PASS] GFS terminal value as % of EV                              got=68.0  expect=68.0
+  [PASS] GFS comps mid ($)                                          got=59.21  expect=59.21
+  [PASS] TSEM excluded from applied comps range                     got=True  expect=True
+  [PASS] OMV WACC (%)                                               got=6.97  expect=6.97
+  [PASS] OMV beta used (not raw)                                    got=0.9  expect=0.9
+  [PASS] OMV raw beta rejected                                      got=0.21  expect=0.21
+  [PASS] OMV DCF value/share (EUR)                                  got=56.42  expect=56.42
+  [PASS] OMV implied minorities (EURm)                              got=3750.0  expect=3750.0
+  [PASS] OMV normalised EPS (EUR)                                   got=3.96  expect=3.96
+  [PASS] OMV 2025 dividend cover (x)                                got=1.33  expect=1.33
+  [PASS] OMV 2021 dividend cover (x)                                got=6.03  expect=6.03
+  [PASS] WHOOP post-money (USDm)                                    got=10100.0  expect=10100.0
+  [PASS] WHOOP EV/revenue post-money (x)                            got=9.18  expect=9.18
+  [PASS] WHOOP revenue per member (USD)                             got=440.0  expect=440.0
+  [PASS] WHOOP implied revenue CAGR (%)                             got=34.8  expect=34.8
+  [PASS] WHOOP implied 2035 revenue (USDbn)                         got=21.83  expect=21.8
+  [PASS] MubCap AUM input (USDbn)                                   got=30.0  expect=30.0
+  [PASS] MubCap central after discount (USDbn)                      got=1.42  expect=1.42
+  [PASS] MubCap central before discount (USDbn)                     got=1.89  expect=1.89
+
+4. QUANTITATIVE AND ML LAYER
+  [PASS] Actual mix expected return (%)                             got=9.45  expect=9.45
+  [PASS] Actual mix volatility (%)                                  got=12.49  expect=12.49
+  [PASS] Avoidable volatility (pp)                                  got=1.02  expect=1.02
+  [PASS] Max-Sharpe public-equity weight                            got=0.0  expect=0.0
+  [PASS] Median 2035 AUM (USDbn)                                    got=1057.9  expect=1058.0
+  [PASS] P(AUM > $1trn by 2035)                                     got=55.8  expect=55.8
+  [PASS] P(drawdown worse than 20%)                                 got=12.9  expect=12.9
+  [PASS] Classifier hold-out accuracy (%)                           got=92.0  expect=92.0
+  [PASS] Hold-out headlines are real and unseen                     got=12  expect=12
+  [PASS] Number of hold-out misses                                  got=1  expect=1
+  [PASS] The miss is the CoolIT headline                            got=True  expect=True
+
+5. DELIVERABLE FILES
+  [PASS] Equity_Research_Report.pdf pages >= 15                     got=True  expect=True
+  [PASS] Beginner_Guide_Booklet.pdf pages >= 18                     got=True  expect=True
+  [PASS] Project_Notes_Evidence_Log.pdf pages >= 12                 got=True  expect=True
+  [PASS] Excel workbook sheets                                      got=7  expect=7
+  [PASS] Excel contains live formulas (not pasted values)           got=True  expect=True
+        -> 219 live formulas found
+  [PASS] Dashboard is self-contained (no external CDN)              got=True  expect=True
+  [PASS] Dashboard has 6 tab sections                               got=6  expect=6
+  [PASS] Charts produced                                            got=14  expect=14
+  [PASS] Power BI export tables                                     got=17  expect=17
+
+6. INTERNAL CONSISTENCY BETWEEN DOCUMENTS AND MODELS
+  [PASS] Report text contains '2,734'                               got=True  expect=True
+  [PASS] Report text contains '10.7%'                               got=True  expect=True
+  [PASS] Report text contains 'US$385'                              got=True  expect=True
+  [PASS] Report text contains '33.4%'                               got=True  expect=True
+  [PASS] Report text contains '34.8%'                               got=True  expect=True
+  [PASS] Report text contains '1.33x'                               got=True  expect=True
+  [PASS] Report text contains '6.03x'                               got=True  expect=True
+  [PASS] Report text contains '92%'                                 got=True  expect=True
+  [PASS] Report text contains '55%'                                 got=True  expect=True
+  [PASS] Report text contains '$50.01'                              got=True  expect=True
+  [PASS] Report text contains '0.97'                                got=True  expect=True
+
+====================================================================================================
+RESULT:  72 passed,  0 failed
+====================================================================================================
