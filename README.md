@@ -1,6 +1,6 @@
 # Equity Research — Mubadala Portfolio Strategy Analyst
 
-**Author:** bann · **Status:** ongoing
+**Author:** Bann · **Status:** ongoing
 
 An independent equity-research project analysing the portfolio strategy, sector allocation and
 global investments of **Mubadala Investment Company**, Abu Dhabi's sovereign investor
