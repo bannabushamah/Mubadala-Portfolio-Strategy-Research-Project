@@ -13,7 +13,7 @@ dashboard, and a quantitative/AI layer.
 
 | Finding | Number | Where |
 |---|---|---|
-| The asset mix is formally **concentrated** — 5 reported buckets behave like 3.7 | HHI **2,734** | SQL Q8, Report §3.2 |
+| The asset mix is formally **concentrated**, 5 reported buckets behave like 3.7 | HHI **2,734** | SQL Q8, Report §3.2 |
 | Growth is **self-funded**: realisations paid for 97c of every dollar deployed | Recycling ratio **0.97x** | SQL Q3, Report §4 |
 | The 20% public-equity sleeve is **liquidity insurance**, priced at ~1pp of volatility | **1.02pp** avoidable risk | Optimiser, Report §9.1 |
 | GlobalFoundries at $50 requires a steady-state EBIT margin of 33.4% vs 12.1% today | Reverse DCF | Report §5.2 |
