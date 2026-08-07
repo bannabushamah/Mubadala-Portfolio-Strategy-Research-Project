@@ -29,7 +29,7 @@ dashboard, and a quantitative/AI layer.
 |---|---|---|---|---|
 | Technology | **GlobalFoundries** (NASDAQ: GFS) | AI optionality isn't in the reported numbers | FCFF DCF + comps + **reverse DCF** | DCF $35.07 vs market $50.01; price implies a 33.4% margin |
 | Energy | **OMV AG** (VIE: OMV) | Implausible beta, consolidated minorities, distorted EPS | FCFF DCF with three disclosed adjustments + dividend-cover test | €56.42 vs €54.60 (+3.3%); cover down to 1.3x |
-| Healthcare | **WHOOP** (private) | No accounts exist — only a transaction price | **Reverse DCF** on the disclosed Series G | Requires 34.8% CAGR for 10 years |
+| Healthcare | **WHOOP** (private) | No accounts exist, only a transaction price | **Reverse DCF** on the disclosed Series G | Requires 34.8% CAGR for 10 years |
 | Financial services | **Mubadala Capital** | Private, and the asset is a fee stream | Fee-franchise SOTP vs listed alt managers | ~US$1.42bn after a 25% private discount |
 
 ---
