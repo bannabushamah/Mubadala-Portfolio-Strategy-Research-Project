@@ -43,7 +43,7 @@ dashboard, and a quantitative/AI layer.
 03_valuation_models/  Shared valuation engine · 4 case studies · live-formula Excel workbook
 04_ai_ml/         Mean-variance optimiser · Monte Carlo · text classifier · peer clustering
 05_dashboard/     Self-contained HTML dashboard · 290-line Power BI build guide (25 DAX measures)
-06_reports/       Equity research report (20pp) · Beginner's guide (25pp) · Evidence log (16pp)
+06_reports/       Equity research report (20pp)
 07_charts/        14 publication-quality figures
 verify.py         72 independent checks re-deriving every headline figure
 ```
