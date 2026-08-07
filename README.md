@@ -42,7 +42,7 @@ dashboard, and a quantitative/AI layer.
 02_sql/           205-line schema · 12 documented analysis queries · SQLite database
 03_valuation_models/  Shared valuation engine · 4 case studies · live-formula Excel workbook
 04_ai_ml/         Mean-variance optimiser · Monte Carlo · text classifier · peer clustering
-05_dashboard/     Self-contained HTML dashboard · 290-line Power BI build guide (25 DAX measures)
+05_dashboard/     Self-contained HTML dashboard · 290-line Power BI build statement (25 DAX measures)
 06_reports/       Equity research report (20pp)
 07_charts/        14 publication-quality figures
 verify.py         72 independent checks re-deriving every headline figure
